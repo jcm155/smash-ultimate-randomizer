@@ -1,2 +1,2 @@
 # smash-ultimate-randomizer
-Add some spice to your Super Smash Bros. Ultimate Matches with this randomizer!
+Add some spice to your Super Smash Bros. Ultimate Matches with this randomizer! It generates a list of character options for each player and a list of stage options. It even allows you to pick a theme, such as series or first smash game. Featuring infinite customization options such as player names, banned characters and stages, adjustable tournament legality, and more!
