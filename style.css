@@ -1,0 +1,323 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #222;
+}
+
+.heading {
+  background-color: #000;
+  text-align: center;
+  padding: 10px 0;
+  margin: 0;
+  font-family: "Exo 2";
+  color: #000;
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+}
+
+legend {
+  font-size: 1.5em;
+  text-align: center;
+}
+.settings {
+  background-color: #ccc;
+  background-image: linear-gradient(-30deg, #ccc, #555, #ccc, #555, #ccc);
+  color: #000;
+  font-family: "Exo 2";
+  font-size: 1.2em;
+  text-align: center;
+}
+
+#char-theme-description {
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+}
+#stage-theme-description {
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+}
+
+input, select {
+  width: 50%;
+  padding: 6px 5px;
+  margin: 1px 100px;
+  display: inline-block;
+  border: 1px solid #000;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: "Exo 2";
+  font-size: 1em;
+}
+
+.results {
+  padding: 15px 0;
+  color: #fff;
+  margin: 0;
+  font-family: "Exo 2";
+  font-size: 1.5em;
+  text-align: center;
+  font-weight: 1000;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  background-color: #222;
+  background-image: url("smash-ultimate-mural.jpg");
+  background-size: auto;
+  background-position: center left;
+  background-repeat: no-repeat;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.player-btn {
+  background-color: #000;
+  border: none;
+  color: white;
+  padding: 6px 35px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  font-family: "Exo 2";
+  border-radius: 5px;
+}
+
+.submit-btn {
+  text-align: center;
+}
+
+.submit-btn button {
+  background-color: #000;
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  font-size: 30px;
+  font-family: "Exo 2";
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+footer {
+  background-color: #000;
+  text-align: center;
+  padding: 10px 0;
+  margin: 0;
+  font-family: "Exo 2";
+  color: #000;
+  font-size: 1.5em;
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+}
+
+#p1-result {
+  color: #d53535;
+}
+#p2-result {
+  color: #2e6dee;
+}
+#p3-result {
+  color: #daa50c;
+}
+#p4-result {
+  color: #09972b;
+}
+#p5-result {
+  color: #d0571e;
+}
+#p6-result {
+  color: #1ba4d1;
+}
+#p7-result {
+  color: #d62f7f;
+}
+#p8-result {
+  color: #5130a7;
+}
+#p9-result {
+  color: #fff;
+}
+#p10-result {
+  color: #ffb5fe;
+}
+#p11-result {
+  color: #ccc;
+}
+#p12-result {
+  color: #735400;
+}
+#p13-result {
+  color: #333;
+}
+#p14-result {
+  color: #d53535;
+}
+#p15-result {
+  color: #2e6dee;
+}
+#p16-result {
+  color: #daa50c;
+}
+#p17-result {
+  color: #09972b;
+}
+#p18-result {
+  color: #d0571e;
+}
+#p19-result {
+  color: #1ba4d1;
+}
+#p20-result {
+  color: #d62f7f;
+}
+#p21-result {
+  color: #5130a7;
+}
+#p22-result {
+  color: #fff;
+}
+#p23-result {
+  color: #ffb5fe;
+}
+#p24-result {
+  color: #ccc;
+}
+#p25-result {
+  color: #735400;
+}
+#p26-result {
+  color: #333;
+}
+
+#stage-result {
+  margin: 0;
+}
+
+#multiple-reminder-char {
+  margin: 0;
+  padding: 0;
+}
+
+#multiple-reminder-stage {
+  margin: 0;
+  padding: 0;
+}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 6px 0px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  bottom: 23px;
+  right: 28px;
+  width: 180px;
+  position: fixed;
+  font-family: "Exo 2";
+  font-size: 1em;
+  border-radius: 5px;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+  background-image: linear-gradient(-30deg, #ccc, #555, #ccc, #555, #ccc);
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* Set a style for the submit/login button */
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  margin: 10px, 0px;
+}
+
+/* Add a red background color to the cancel button */
+.cancel {
+  background-color: #000;
+  border-radius: 5px;
+  font-family: "Exo 2";
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+#alt-stage-toggle {
+  margin: 10px 10px;
+  padding: 0;
+  width:20px;
+}
+
+#color-toggle {
+  margin: 10px 10px;
+  padding: 0;
+  width:20px;
+}
+
+#legality-control {
+  width: 30%;
+  margin: 0 20px;
+}
+
+#legality-ctrl-description {
+  margin: 0;
+  font-size: 0.8em;
+}
+
+/* Responsive layout - makes a one column-layout instead of two or three columns */
+@media screen and (max-width: 800px) {
+  .column {
+    flex: 50%;
+    max-width: 50%;
+}
+
+
+
+
+
+    
+
+
+    
+
+
+
