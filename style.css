@@ -26,6 +26,7 @@ legend {
   font-family: "Exo 2";
   font-size: 1.2em;
   text-align: center;
+  position: relative;
 }
 
 #char-theme-description {
@@ -42,7 +43,7 @@ legend {
 input, select {
   width: 50%;
   padding: 6px 5px;
-  margin: 1px 100px;
+  margin: 0;
   display: inline-block;
   border: 1px solid #000;
   border-radius: 4px;
@@ -65,7 +66,8 @@ input, select {
   background-image: url("smash-ultimate-mural.jpg");
   background-size: auto;
   background-position: center left;
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
+  min-height: 280px;
 }
 
 /* Create three equal columns that floats next to each other */
@@ -119,6 +121,11 @@ footer {
   color: #000;
   font-size: 1.5em;
   text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+}
+
+.setting-description {
+  margin-top: 10px;
+  margin-bottom: 0;
 }
 
 #p1-result {
@@ -221,11 +228,10 @@ footer {
   padding: 6px 0px;
   border: none;
   cursor: pointer;
-  opacity: 0.8;
-  bottom: 23px;
-  right: 28px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
   width: 180px;
-  position: fixed;
   font-family: "Exo 2";
   font-size: 1em;
   border-radius: 5px;
@@ -235,11 +241,18 @@ footer {
 .form-popup {
   display: none;
   position: fixed;
-  bottom: 0;
-  right: 15px;
+  top: 10%;
+  left: 35%;
   border: 3px solid #f1f1f1;
+  padding: 10px;
   z-index: 9;
   background-image: linear-gradient(-30deg, #ccc, #555, #ccc, #555, #ccc);
+  width: 500px;
+  height: 600px;
+  top: 50%;
+  left: 50%;
+  margin-top: -300px; /* Negative half of height. */
+  margin-left: -250px; /* Negative half of width. */
 }
 
 /* Add styles to the form container */
@@ -258,19 +271,14 @@ footer {
   background: #f1f1f1;
 }
 
-/* Set a style for the submit/login button */
-.btn {
-  background-color: #4CAF50;
+/* Add a red background color to the cancel button */
+.cancel {
   color: white;
   padding: 10px 20px;
   border: none;
   cursor: pointer;
   text-align: center;
   margin: 10px, 0px;
-}
-
-/* Add a red background color to the cancel button */
-.cancel {
   background-color: #000;
   border-radius: 5px;
   font-family: "Exo 2";
@@ -305,9 +313,16 @@ footer {
 
 /* Responsive layout - makes a one column-layout instead of two or three columns */
 @media screen and (max-width: 800px) {
+  .open-button {
+    position: relative;
+    text-align: center;
+    margin: 10px 0;
+    bottom: 0;
+    right: 0;
+  }
+
   .column {
-    flex: 50%;
-    max-width: 50%;
+    width: 100%;
 }
 
 

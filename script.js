@@ -1,8 +1,8 @@
 var NOT_FOUND = -1;
-var maxPlayers = 8;
-var includeAltForms = false;
-var includeColorfulResults = true;
-var legalityLevel = 2; // Adjust how strict the legality is for tournment legal stages. ((STRICT) 0----5 (RELAXED))
+var maxPlayers = document.getElementById("max-player-setting").value;
+var includeAltForms = document.getElementById("alt-stage-toggle").checked;
+var includeColorfulResults = document.getElementById("color-toggle").checked;
+var legalityLevel = document.getElementById("legality-control").value; // Adjust how strict the legality is for tournment legal stages. ((STRICT) 0----5 (RELAXED))
 var lightweightMax = 81;// Set the maximum weight to be considered a lightweight.
 var heavyWeightMin = 107; // Set the minimum weight to be considered a heavyweight.
 

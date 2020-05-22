@@ -16,7 +16,7 @@
 	  			<div class="row">
 		  			<div id="player-div" class="column player">
 						<div id="player-list">
-			  				<p>Player Names:</p>
+			  				<p class="setting-description">Player Names:</p>
 			  				<p id="p1-name">
 							  <input type = "text" id = "p1-name-box" value = "P1"/>
 							</p>
@@ -31,77 +31,88 @@
 			  		</div>
 			  		<div id="character-div" class="column character">
 			  			<div id="character-theme">
-							<label for="char-theme">Choose a character theme:</label>
-							<select id="char-theme-select" onchange="updateCharMode()">
-								<option value="no-theme">No theme</option>
-								<option value="male">Male</option>
-								<option value="female">Female</option>
-								<option value="non-human">Non-human</option>
-								<option value="villain">Villain</option>
-								<option value="smash-64">Smash 64</option>
-								<option value="melee">Melee</option>
-								<option value="brawl">Brawl</option>
-								<option value="smash-4">Smash 4</option>
-								<option value="ultimate">Ultimate</option>
-								<option value="dlc">DLC</option>
-								<option value="sword">Sword</option>
-								<option value="series">Series</option>
-								<option value="1980s">1980s</option>
-								<option value="1990s">1990s</option>
-								<option value="2000s">2000s</option>
-								<option value="2010s">2010s</option>
-								<option value="third-party">Third-Party</option>
-								<option value="light">Light</option>
-								<option value="heavy">Heavy</option>
-								<option value="multislot">Multislot</option>
-							</select>
+			  				<div>
+								<label for="char-theme" class="setting-description">Choose a character theme:</label>
+							</div>
+							<div>
+								<select id="char-theme-select" onchange="updateCharMode()">
+									<option value="no-theme">No theme</option>
+									<option value="male">Male</option>
+									<option value="female">Female</option>
+									<option value="non-human">Non-human</option>
+									<option value="villain">Villain</option>
+									<option value="smash-64">Smash 64</option>
+									<option value="melee">Melee</option>
+									<option value="brawl">Brawl</option>
+									<option value="smash-4">Smash 4</option>
+									<option value="ultimate">Ultimate</option>
+									<option value="dlc">DLC</option>
+									<option value="sword">Sword</option>
+									<option value="series">Series</option>
+									<option value="1980s">1980s</option>
+									<option value="1990s">1990s</option>
+									<option value="2000s">2000s</option>
+									<option value="2010s">2010s</option>
+									<option value="third-party">Third-Party</option>
+									<option value="light">Light</option>
+									<option value="heavy">Heavy</option>
+									<option value="multislot">Multislot</option>
+								</select>
+							</div>
 							<p id="char-theme-description">Basic is best.</p>
 						</div>
-						<p>Choose how many character options per player:
+						<p class="setting-description">Choose how many character options per player:
 						<p>
 						  <input type = "number" id = "char-select-num" value = "3" onchange="updateNumOfChars()"/>
 						</p>
 			  		</div>
 			  		<div id="stage-div" class="column stage">
 			  			<div id ="stage-theme">
-							<label for="stage-theme">Choose a stage theme:</label>
-							<select id="stage-theme-select" onchange="updateStageMode()">
-								<option value="no-theme">No theme</option>
-								<option value="tournament-legal">Tournament-legal</option>
-								<option value="smash-64">Smash 64</option>
-								<option value="melee">Melee</option>
-								<option value="brawl">Brawl</option>
-								<option value="3ds">3DS</option>
-								<option value="wii-u">Wii U</option>
-								<option value="ultimate">Ultimate</option>
-								<option value="dlc">DLC</option>
-								<option value="series">Series</option>
-								<option value="large">Large</option>
-							</select>
+			  				<div>
+								<label for="stage-theme" class="setting-description">Choose a stage theme:</label>
+							</div>
+							<div>
+								<select id="stage-theme-select" onchange="updateStageMode()">
+									<option value="no-theme">No theme</option>
+									<option value="tournament-legal">Tournament-legal</option>
+									<option value="smash-64">Smash 64</option>
+									<option value="melee">Melee</option>
+									<option value="brawl">Brawl</option>
+									<option value="3ds">3DS</option>
+									<option value="wii-u">Wii U</option>
+									<option value="ultimate">Ultimate</option>
+									<option value="dlc">DLC</option>
+									<option value="series">Series</option>
+									<option value="large">Large</option>
+								</select>
+							</div>
 							<p id="stage-theme-description">I'm not picky.</p>
 						</div>
-						<p>Choose how many stage options will be generated:
+						<p class="setting-description">Choose how many stage options will be generated:
 						<p>
 						  <input type="number" id="stage-select-num" value="5" onchange="updateNumOfStages()"/>
 						</p>
 			  		</div>
 			  	</div>
+			  	<div class="advanced-pos">
+				  	<button class="open-button" id="open-button">Advanced...</button>
+				</div>
 			  	<div class="submit-btn" id="submit-btn">
 			  		<button id="submit">GENERATE</button>
 			  	</div>
-			  	<button class="open-button" id="open-button">Advanced...</button>
 				<div class="form-popup" id="advanced-options">
 				  <form action="/action_page.php" class="form-container">
 				    <fieldset>
 				    	<legend>Advanced Options</legend>
-				    	<p>Max Players:<input type="number" id="max-player-setting" value=8 onchange="updateMaxPlayers()"></input></p>
-				    	<p>Color-coded Results<input type="checkbox" checked=true id="color-toggle" onchange="updateColors()"></input></p>
-				    	<p>Include BF/Ω Forms<input type="checkbox" id="alt-stage-toggle" onchange="updateAltForms()"></input></p>
-				    	<p>Choose characters to never select:</p>
+				    	<p class="setting-description">Max Players:</p>
+				    	<input type="number" id="max-player-setting" value=8 onchange="updateMaxPlayers()"></input>
+				    	<p class="setting-description">Color-coded Results<input type="checkbox" id="color-toggle" onchange="updateColors()"></input></p>
+				    	<p class="setting-description">Include BF/Ω Forms<input type="checkbox" id="alt-stage-toggle" onchange="updateAltForms()"></input></p>
+				    	<p class="setting-description">Choose characters to never select:</p>
 				    	<select id="removed-chars" multiple="multiple" onchange="updateRemovedChars()">Choose characters to never select:</select>
-				    	<p>Choose stages to never select:</p>
+				    	<p class="setting-description">Choose stages to never select:</p>
 				    	<select id="removed-stages" multiple="multiple" onchange="updateRemovedStages()">Choose stages to never select:</select>
-				    	<p>Adjust strictness of 'tournament-legal' stages:</p>
+				    	<p class="setting-description">Adjust strictness of 'tournament-legal' stages:</p>
 				    	<p id="legality-ctrl-description">Very Strict<input type="range" min="0" max="5" value="1" class="slider" id="legality-control" onChange="updateLegality()">Very Relaxed</p>
 				    	<button class="btn cancel" id="btn-cancel" onclick="closeForm()">Close</button>
 				    </fieldset>
