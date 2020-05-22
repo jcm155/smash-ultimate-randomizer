@@ -902,22 +902,22 @@ function generateResults()
 		{
 			if (numOfChars == 1)
 			{
-				addElement("p", playerList[player]+", your character is:", "results", [["id", "p"+(player+1)+"-result"]]);
+				addElement("p", playerList[player]+", your character is:", "results", [["id", "p"+(player+1)+"-result"], ["class", "result-line"]]);
 			}
 			else
 			{
-				addElement("p", playerList[player]+", your choices are:", "results", [["id", "p"+(player+1)+"-result"]]);
+				addElement("p", playerList[player]+", your choices are:", "results", [["id", "p"+(player+1)+"-result"], ["class", "result-line"]]);
 			}
 		}
 		else
 		{
 			if (numOfChars == 1)
 			{
-				addElement("p", playerList[player]+", your character is:", "results", [["id", "p"+(player+1)+"-result-plain"]]);
+				addElement("p", playerList[player]+", your character is:", "results", [["id", "p"+(player+1)+"-result-plain"], ["class", "result-line"]]);
 			}
 			else
 			{
-				addElement("p", playerList[player]+", your choices are:", "results", [["id", "p"+(player+1)+"-result-plain"]]);
+				addElement("p", playerList[player]+", your choices are:", "results", [["id", "p"+(player+1)+"-result-plain"], ["class", "result-line"]]);
 			}
 		}
 		for (var char = 0; char < numOfChars; char++)
@@ -947,11 +947,11 @@ function generateResults()
 		}
 	}
 	if (numOfStages == 1) {
-		addElement("p", "Your stage is:", "results", [["id", "stage-result"]]);
+		addElement("p", "Your stage is:", "results", [["id", "stage-result"], ["class", "result-line"]]);
 	}
 	else
 	{
-		addElement("p", "Your stage choices are:", "results", [["id", "stage-result"]]);
+		addElement("p", "Your stage choices are:", "results", [["id", "stage-result"], ["class", "result-line"]]);
 	}
 	for (var stage = 0; stage < numOfStages; stage++)
 	{
