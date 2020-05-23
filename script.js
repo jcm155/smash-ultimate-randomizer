@@ -375,19 +375,13 @@ function addElement(tag, content, parent, attributes) {
 	parentElement.appendChild(newElement);
 }
 
-function getSelectValues(select) {
-	var result = [];
-	var options = select && select.options;
-	var opt;
-
-	for (var i=0, iLen=options.length; i<iLen; i++) {
-		opt = options[i];
-		if (opt.selected)
-		{
-			result.push(opt.value || opt.text);
+function getSelected(selectId) {
+	var selected = [];
+	for (var option of document.getElementById(selectId).options) {
+		if (option.selected) {
+			selected.push(option.value);
 		}
 	}
-	return result;
 }
 
 function openForm() {
@@ -491,12 +485,12 @@ function updateNumOfStages()
 
 function updateCharSeries()
 {
-	charSeries = getSelectValues(document.getElementById("char-series-select"));
+	charSeries = getSelected("char-series-select");
 }
 
 function updateStageSeries()
 {
-	stageSeries = getSelectValues(document.getElementById("stage-series-select"));
+	stageSeries = getSelected("stage-series-select");
 }
 
 function updateMaxPlayers()

@@ -61,7 +61,7 @@ input, select {
   font-size: 1.5em;
   text-align: center;
   font-weight: 1000;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
   background-color: #222;
   background-image: url("smash-ultimate-mural.jpg");
   background-size: auto;
