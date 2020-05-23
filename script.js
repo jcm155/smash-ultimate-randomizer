@@ -6,7 +6,7 @@ var legalityLevel = document.getElementById("legality-control").value; // Adjust
 var lightweightMax = 81;// Set the maximum weight to be considered a lightweight.
 var heavyWeightMin = 107; // Set the minimum weight to be considered a heavyweight.
 
-console.log("logging")
+console.log("logging");
 
 var numOfPlayers = 2;
 var charMode = document.getElementById("char-theme-select").value;
@@ -384,6 +384,7 @@ function getSelected(selectId) {
 			selected.push(option.value);
 		}
 	}
+	return selected;
 }
 
 function openForm() {
@@ -543,7 +544,7 @@ function updateAltForms()
 
 function updateRemovedChars()
 {
-	removedChars = getSelectValues(document.getElementById("removed-chars"));
+	removedChars = getSelected("removed-chars");
 	for (var i = 0; i < characters.length; i++)
 	{
 		if (removedChars.includes(characters[i].name))
@@ -562,7 +563,7 @@ function updateRemovedChars()
 
 function updateRemovedStages()
 {
-	removedStages = getSelectValues(document.getElementById("removed-stages"));
+	removedStages = getSelected("removed-stages");
 	for (var i = 0; i < stages.length; i++)
 	{
 		if (removedStages.includes(stages[i].name))
