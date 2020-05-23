@@ -6,6 +6,8 @@ var legalityLevel = document.getElementById("legality-control").value; // Adjust
 var lightweightMax = 81;// Set the maximum weight to be considered a lightweight.
 var heavyWeightMin = 107; // Set the minimum weight to be considered a heavyweight.
 
+console.log("logging")
+
 var numOfPlayers = 2;
 var charMode = document.getElementById("char-theme-select").value;
 var numOfChars = document.getElementById("char-select-num").value;
