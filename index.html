@@ -15,14 +15,14 @@
 	  			<legend>Randomizer Settings</legend>
 	  			<div class="row">
 		  			<div id="player-div" class="column player">
-						<div id="player-list">
+						<div class="player-list" id="player-list">
 			  				<p class="setting-description">Player Names:</p>
-			  				<p id="p1-name">
+			  				<div id="p1-name">
 							  <input type = "text" id = "p1-name-box" value = "P1"/>
-							</p>
-							<p id="p2-name">
+							</div>
+							<div id="p2-name">
 							  <input type = "text" id = "p2-name-box" value = "P2"/>
-							</p>
+							</div>
 						</div>
 						<div id="num-of-players">
 			  				<button class="player-btn" id="remove-player-btn">- Player</button>
@@ -57,14 +57,15 @@
 									<option value="light">Light</option>
 									<option value="heavy">Heavy</option>
 									<option value="multislot">Multislot</option>
+									<option value="random">Random...</option>
 								</select>
 							</div>
 							<p id="char-theme-description">Basic is best.</p>
 						</div>
-						<p class="setting-description">Choose how many character options per player:
-						<p>
-						  <input type = "number" id = "char-select-num" value = "3" onchange="updateNumOfChars()"/>
-						</p>
+						<div class="char-select-num">
+							<div><p class="setting-description">Choose how many character options per player:</p></div>
+						  	<div><input type = "number" id = "char-select-num" value = "3" onchange="updateNumOfChars()"/></div>
+						</div>
 			  		</div>
 			  		<div id="stage-div" class="column stage">
 			  			<div id ="stage-theme">
@@ -84,14 +85,15 @@
 									<option value="dlc">DLC</option>
 									<option value="series">Series</option>
 									<option value="large">Large</option>
+									<option id="random-stage" value="random">Random...</option>
 								</select>
 							</div>
 							<p id="stage-theme-description">I'm not picky.</p>
 						</div>
-						<p class="setting-description">Choose how many stage options will be generated:
-						<p>
-						  <input type="number" id="stage-select-num" value="5" onchange="updateNumOfStages()"/>
-						</p>
+						<div class="stage-select-num">
+							<div><p class="setting-description">Choose how many stage options will be generated:</p></div>
+							<div><input type="number" id="stage-select-num" value="5" onchange="updateNumOfStages()"/></div>
+						</div>
 			  		</div>
 			  	</div>
 			  	<div class="advanced-pos">

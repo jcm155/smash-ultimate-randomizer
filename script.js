@@ -6,8 +6,6 @@ var legalityLevel = document.getElementById("legality-control").value; // Adjust
 var lightweightMax = 81;// Set the maximum weight to be considered a lightweight.
 var heavyWeightMin = 107; // Set the minimum weight to be considered a heavyweight.
 
-console.log("logging");
-
 var numOfPlayers = 2;
 var charMode = document.getElementById("char-theme-select").value;
 var numOfChars = document.getElementById("char-select-num").value;
@@ -28,13 +26,13 @@ for (var mode = 0; mode < charModeElements.length; mode++)
 {
 	charModes.push(charModeElements[mode].value);
 }
-var charModeDescriptions = ["Basic is best.", "Cause boys rule.", "#GIRLPOWER", "Play whoever you're beast at.", "Everyone needs a little chaos in their life.", "Back to the classics.", "I'm not super competitive, I swear!", "Have a nice trip.", "I don't remember it either.", "PLANT GANG. PLANT GANG. PLANT GANG.", "Bayonetta was fine, you were just bad.", "Surely just one more anime swordsman couldn't hurt.", "Wait, Shulk's not from Fire Emblem?", "The golden age of gaming.", "OH MY GOSH IT'S BANJO!!!", "Super Mario Galaxy defined this era. Come at me.", "Why is Byleth in this game anyways?", "Finally, some mascots I care about.", "I, too, want to die to anything.", "The bigger they are, the farther they can punch Yoshi.", "Because smuggling in extra characters is fine."];
+var charModeDescriptions = ["Basic is best.", "Cause boys rule.", "#GIRLPOWER", "Play whoever you're beast at.", "Everyone needs a little chaos in their life.", "Back to the classics.", "I'm not super competitive, I swear!", "Have a nice trip.", "I don't remember it either.", "PLANT GANG. PLANT GANG. PLANT GANG.", "Bayonetta was fine, you were just bad.", "Surely just one more anime swordsman couldn't hurt.", "Wait, Shulk's not from Fire Emblem?", "The golden age of gaming.", "OH MY GOSH IT'S BANJO!!!", "Super Mario Galaxy defined this era. Come at me.", "Why is Byleth in this game anyways?", "Finally, some mascots I care about.", "I, too, want to die to anything.", "The bigger they are, the farther they can punch Yoshi.", "Because smuggling in extra characters is fine.", "Even I don't know what's coming..."];
 
-var stageModeDescriptions = ["I'm not picky.", "Ah, a fellow elitist.", "Good graphics are for nerds.", "Yes, there's more than Final Destination.", "But where's Rumble Falls?", "Still upset about Rainbow Road and Pac-Maze...", "Who even approved The Great Cave Offensive?", "Yes, all 9 of them.", "Paid stages > normal stages. Change my mind.", "Which ones play MEGALOVANIA?", "Actually, I CAN run forever.", "Vanilla stages, just like you.", "Why bother choosing? They're all the same.", "FOX NO ITEMS OMEGA FORMS ONLY!", "At least you won't have stage hazards.", "Who played on Battlefield anyway?", "Half are flat, half are dynamic. Sound familiar?"];
+var stageModeDescriptions = ["I'm not picky.", "Ah, a fellow elitist.", "Good graphics are for nerds.", "Yes, there's more than Final Destination.", "But where's Rumble Falls?", "Still upset about Rainbow Road and Pac-Maze...", "Who even approved The Great Cave Offensive?", "Yes, all 9 of them.", "Paid stages > normal stages. Change my mind.", "Which ones play MEGALOVANIA?", "Actually, I CAN run forever.", "Vanilla stages, just like you.", "Why bother choosing? They're all the same.", "FOX NO ITEMS OMEGA FORMS ONLY!", "At least you won't have stage hazards.", "Who played on Battlefield anyway?", "Half boring, half fun. Sound familiar?", "It's a secret to everybody..."];
 
 var stageModeElements = document.getElementById("stage-theme-select").getElementsByTagName("option");
 var stageModes = []
-for (var mode = 0; mode < stageModeElements.length; mode++)
+for (var mode = 0; mode < stageModeElements.length-1; mode++)
 {
 	stageModes.push(stageModeElements[mode].value);
 }
@@ -44,6 +42,7 @@ stageModes.push("omega");
 stageModes.push("non-normal");
 stageModes.push("non-battlefield");
 stageModes.push("non-omega");
+stageModes.push("random");
 
 function Character(charName, charNum, charSeries, charSex, charOrigin, charSmash, charWeight, charDLC, charHasSword, charIsVillain, charIsThirdParty, charIsMultislot, charIsNonHuman)
 {
@@ -416,7 +415,7 @@ function addPlayer()
 	if (numOfPlayers < maxPlayers)
 	{
 		numOfPlayers++;
-		addElement("p", "", "player-list", [["id", "p"+(numOfPlayers)+"-name"]]);
+		addElement("div", "", "player-list", [["id", "p"+(numOfPlayers)+"-name"]]);
 		addElement("input", "", "p"+(numOfPlayers)+"-name", [["type", "text"],["id", "p"+(numOfPlayers)+"-name-box"],["value", "P"+(numOfPlayers)]]);
 	}
 }
@@ -433,7 +432,7 @@ function removePlayer()
 function updateCharMode()
 {
 	charMode = document.getElementById("char-theme-select").value;
-	document.getElementById("char-theme-description").innerHTML = charModeDescriptions[findInArray(charModes, charMode)]
+	document.getElementById("char-theme-description").innerHTML = charModeDescriptions[findInArray(charModes, charMode)];
 	if (charMode == "series")
 	{
 		addElement("select", "Select Series", "character-theme", [["id", "char-series-select"], ["multiple", "multiple"], ["onclick", "updateCharSeries()"]]);
@@ -451,6 +450,22 @@ function updateCharMode()
 			document.getElementById("multiple-reminder-char").remove();
 		}
 	}
+	if (charMode == "random")
+	{
+		charMode = charModes[randomInt(0, charModes.length-2)];
+		if (charMode == "series")
+		{
+			var randomCharSeries = generateUniqueNums(randomInt(2, 6), 0, allCharSeries.length-1);
+			for (var i = 0; i < randomCharSeries.length; i++)
+			{
+				charSeries.push(allCharSeries[randomCharSeries[i]]);
+			}
+			alert("Your theme is characters from the following series: "+charSeries+".")
+		}
+		else {
+			alert("Your theme is "+charMode.toLowerCase()+" characters!")
+		}
+	}
 }
 
 function updateNumOfChars()
@@ -461,7 +476,7 @@ function updateNumOfChars()
 function updateStageMode()
 {
 	stageMode = document.getElementById("stage-theme-select").value;
-	document.getElementById("stage-theme-description").innerHTML = stageModeDescriptions[findInArray(stageModes, stageMode)]
+	document.getElementById("stage-theme-description").innerHTML = stageModeDescriptions[findInArray(stageModes, stageMode)];
 	if (stageMode == "series")
 	{
 		addElement("select", "Select Series", "stage-theme", [["id", "stage-series-select"], ["multiple", "multiple"], ["onclick", "updateStageSeries()"]]);
@@ -477,6 +492,29 @@ function updateStageMode()
 		{
 			document.getElementById("stage-series-select").remove();
 			document.getElementById("multiple-reminder-stage").remove();
+		}
+	}
+	if (stageMode == "random")
+	{
+		if (includeAltForms)
+		{
+			stageMode = stageModes[randomInt(0, stageModes.length-2)];
+		}
+		else
+		{
+			stageMode = stageModes[randomInt(0, stageModes.length-8)];
+		}
+		if (stageMode == "series")
+		{
+			var randomStageSeries = generateUniqueNums(randomInt(2, 6), 0, allStageSeries.length-1);
+			for (var i = 0; i < randomStageSeries.length; i++)
+			{
+				stageSeries.push(allStageSeries[randomStageSeries[i]]);
+			}
+			alert("Your theme is stages from the following series: "+stageSeries+".")
+		}
+		else {
+			alert("Your theme is "+stageMode.toLowerCase()+" stages!")
 		}
 	}
 }
@@ -511,12 +549,14 @@ function updateAltForms()
 	includeAltForms = document.getElementById("alt-stage-toggle").checked;
 	if (includeAltForms)
 	{
+		document.getElementById("random-stage").remove();
 		addElement("option", "Normal", "stage-theme-select", [["id","normal-stages"], ["value", "normal"]]);
 		addElement("option", "Battlefield", "stage-theme-select", [["id","battlefield-stages"], ["value", "battlefield"]]);
 		addElement("option", "Omega", "stage-theme-select", [["id","omega-stages"], ["value", "omega"]]);
 		addElement("option", "Non-normal", "stage-theme-select", [["id","non-normal"], ["value", "non-normal"]]);
 		addElement("option", "Non-Battlefield", "stage-theme-select", [["id","non-battlefield"], ["value", "non-battlefield"]]);
 		addElement("option", "Non-Omega", "stage-theme-select", [["id","non-omega"], ["value", "non-omega"]]);
+		addElement("option", "Random...", "stage-theme-select", [["id","random-stage"], ["value", "random"]]);
 		for (var i = 0; i<totalUniqueStages; i++)
 		{
 			stages.push(new Stage("BF "+stages[i+3].name, stages[i+3].series, stages[i+3].firstSmashAppearance, stages[i+3].legality, stages[i+3].dlc, stages[i+3].isLarge, stages[i+3].isThirdParty));
@@ -538,7 +578,6 @@ function updateAltForms()
 		{
 			stages.pop();
 		}
-		console.log(stages.length);
 	}
 }
 

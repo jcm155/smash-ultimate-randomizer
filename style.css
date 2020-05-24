@@ -41,7 +41,7 @@ legend {
 }
 
 input, select {
-  width: 50%;
+  width: 250px;
   padding: 6px 5px;
   margin: 0;
   display: inline-block;
@@ -86,6 +86,10 @@ input, select {
   clear: both;
 }
 
+.player-list input {
+  margin-bottom: 10px;
+}
+
 .player-btn {
   background-color: #000;
   border: none;
@@ -97,6 +101,27 @@ input, select {
   font-size: 15px;
   font-family: "Exo 2";
   border-radius: 5px;
+  cursor: pointer;
+}
+
+.player-btn:hover {
+  background-color: #333;
+}
+
+.char-select-num {
+  margin: 20px 0;
+}
+
+.char-select-num input {
+  margin: 10px 0;
+}
+
+.stage-select-num {
+  margin: 20px 0;
+}
+
+.stage-select-num input {
+  margin: 10px 0;
 }
 
 .submit-btn {
@@ -113,6 +138,11 @@ input, select {
   font-family: "Exo 2";
   font-weight: bold;
   border-radius: 10px;
+  cursor: pointer;
+}
+
+.submit-btn button:hover {
+  background-color: #333;
 }
 
 footer {
@@ -132,7 +162,7 @@ footer {
 }
 
 #p1-result {
-  color: #d53535;
+  color: #d50000;
 }
 #p2-result {
   color: #2e6dee;
@@ -171,7 +201,7 @@ footer {
   color: #333;
 }
 #p14-result {
-  color: #d53535;
+  color: #d50000;
 }
 #p15-result {
   color: #2e6dee;
@@ -229,7 +259,9 @@ footer {
   background-color: #555;
   color: white;
   padding: 6px 0px;
-  border: none;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
   cursor: pointer;
   position: absolute;
   bottom: 20px;
@@ -238,6 +270,10 @@ footer {
   font-family: "Exo 2";
   font-size: 1em;
   border-radius: 5px;
+}
+
+.open-button:hover {
+  background-color: #777;
 }
 
 /* The popup form - hidden by default */
@@ -274,7 +310,6 @@ footer {
   background: #f1f1f1;
 }
 
-/* Add a red background color to the cancel button */
 .cancel {
   color: white;
   padding: 10px 20px;
@@ -287,9 +322,8 @@ footer {
   font-family: "Exo 2";
 }
 
-/* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover {
-  opacity: 1;
+.cancel:hover {
+  background-color: #333;
 }
 
 #alt-stage-toggle {
