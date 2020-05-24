@@ -71,7 +71,7 @@ input, select {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  animation: scrollbg 75s infinite;
+  animation: scrollbg 120s infinite;
   animation-timing-function: linear;
 }
 
