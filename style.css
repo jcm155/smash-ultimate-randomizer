@@ -71,6 +71,12 @@ input, select {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  animation: scrollbg 75s infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes scrollbg {
+  50% {background-position-x: right;}
 }
 
 /* Create three equal columns that floats next to each other */
