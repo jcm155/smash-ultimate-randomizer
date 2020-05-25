@@ -20,6 +20,30 @@ var removedStages = [];
 
 var resultLists = [];
 
+var playerColors = ["#d50000", "#2e6dee", "#daa50c", "#09972b", "#d0571e", "#1ba4d1", "#d62f7f", "#5130a7"];
+
+//Test for touch screen
+var hasTouchScreen = false;
+if ("maxTouchPoints" in navigator) { 
+    hasTouchScreen = navigator.maxTouchPoints > 0;
+} else if ("msMaxTouchPoints" in navigator) {
+    hasTouchScreen = navigator.msMaxTouchPoints > 0; 
+} else {
+    var mQ = window.matchMedia && matchMedia("(pointer:coarse)");
+    if (mQ && mQ.media === "(pointer:coarse)") {
+        hasTouchScreen = !!mQ.matches;
+    } else if ('orientation' in window) {
+        hasTouchScreen = true; // deprecated, but good fallback
+    } else {
+        // Only as a last resort, fall back to user agent sniffing
+        var UA = navigator.userAgent;
+        hasTouchScreen = (
+            /\b(BlackBerry|webOS|iPhone|IEMobile)\b/i.test(UA) ||
+            /\b(Android|Windows Phone|iPad|iPod)\b/i.test(UA)
+        );
+    }
+}
+
 var charModeElements = document.getElementById("char-theme-select").getElementsByTagName("option");
 var charModes = []
 for (var mode = 0; mode < charModeElements.length; mode++)
@@ -442,7 +466,10 @@ function updateCharMode()
 		{
 			addElement("option", allCharSeries[i], "char-series-select", [["id",allCharSeries[i].toLowerCase()],["value",allCharSeries[i]]])
 		}
-		addElement("p", "(CTRl+Click to select multiple.)", "character-theme", [["id", "multiple-reminder-char"]])
+		if (!hasTouchScreen)
+		{
+			addElement("p", "(CTRl+Click to select multiple.)", "character-theme", [["id", "multiple-reminder-char"]]);
+		}
 	} else {
 		if (document.getElementById("char-series-select"))
 		{
@@ -486,7 +513,10 @@ function updateStageMode()
 		{
 			addElement("option", allStageSeries[i], "stage-series-select", [["id",allStageSeries[i].toLowerCase()],["value",allStageSeries[i]]])
 		}
-		addElement("p", "(CTRl+Click to select multiple.)", "stage-theme", [["id", "multiple-reminder-stage"]])
+		if (!hasTouchScreen)
+		{
+			addElement("p", "(CTRl+Click to select multiple.)", "stage-theme", [["id", "multiple-reminder-stage"]])
+		}
 	} else {
 		if (document.getElementById("stage-series-select"))
 		{
@@ -936,6 +966,7 @@ function generateResults()
 	document.getElementById("results").innerHTML = "Results:";
 	for (var player = 0; player < numOfPlayers; player++)
 	{
+		/*
 		if (includeColorfulResults)
 		{
 			if (numOfChars == 1)
@@ -982,6 +1013,32 @@ function generateResults()
 					document.getElementById("p"+(player+1)+"-result-plain").innerHTML += ", "+characters[charsInMode[resultLists[player][char]]].name;
 				}
 			}
+		}*/
+		if (numOfChars == 1)
+		{
+			addElement("p", playerList[player]+", your character is:", "results", [["id", "p"+(player+1)+"-result"], ["class", "result-line"]]);
+		}
+		else
+		{
+			addElement("p", playerList[player]+", your choices are:", "results", [["id", "p"+(player+1)+"-result"], ["class", "result-line"]]);
+		}
+		for (var char = 0; char < numOfChars; char++)
+		{
+			if (char == 0)
+			{
+				document.getElementById("p"+(player+1)+"-result").innerHTML += " "+characters[charsInMode[resultLists[player][char]]].name;
+			}
+			else
+			{
+				document.getElementById("p"+(player+1)+"-result").innerHTML += ", "+characters[charsInMode[resultLists[player][char]]].name;
+			}
+		}
+	}
+	if (includeColorfulResults)
+	{
+		for (var i = 0; i < numOfPlayers; i++)
+		{
+			document.getElementById("p"+(i+1)+"-result").style.color = playerColors[(i)%8];
 		}
 	}
 	if (numOfStages == 1) {
