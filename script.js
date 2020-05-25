@@ -527,6 +527,7 @@ function updateNumOfStages()
 function updateCharSeries()
 {
 	charSeries = getSelected("char-series-select");
+	console.log(charSeries);
 }
 
 function updateStageSeries()
@@ -738,6 +739,7 @@ function legalChars(mode)
 		if (mode == "series" && charSeries.includes(characters[i].series))
 		{
 			allowed.push(i);
+			console.log("Pushed "+characters[i].name);
 		}
 		if (mode == "third-party" && characters[i].isThirdParty)
 		{
