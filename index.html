@@ -115,7 +115,7 @@
 				    	<p class="setting-description">Choose stages to never select:</p>
 				    	<select id="removed-stages" multiple="multiple" onchange="updateRemovedStages()">Choose stages to never select:</select>
 				    	<p class="setting-description">Adjust strictness of 'tournament-legal' stages:</p>
-				    	<p id="legality-ctrl-description">Very Strict<input type="range" min="0" max="5" value="1" class="slider" id="legality-control" onChange="updateLegality()">Very Relaxed</p>
+				    	<p id="legality-ctrl-description">Very Strict<input type="range" min="0" max="5" value="1" class="slider" id="legality-control" onchange="updateLegality()">Very Relaxed</p>
 				    	<button class="btn cancel" id="btn-cancel" onclick="closeForm()">Close</button>
 				    </fieldset>
 				  </form>

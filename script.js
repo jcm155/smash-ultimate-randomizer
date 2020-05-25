@@ -435,7 +435,7 @@ function updateCharMode()
 	document.getElementById("char-theme-description").innerHTML = charModeDescriptions[findInArray(charModes, charMode)];
 	if (charMode == "series")
 	{
-		addElement("select", "Select Series", "character-theme", [["id", "char-series-select"], ["multiple", "multiple"], ["onclick", "updateCharSeries()"]]);
+		addElement("select", "Select Series", "character-theme", [["id", "char-series-select"], ["multiple", "multiple"], ["onchange", "updateCharSeries()"]]);
 		addElement("optgroup", "", "char-series-select", [["disabled",null],["hidden",null]])
 		addElement("option", "--Select Series--", "char-series-select", [["value",null]])
 		for (var i = 0; i < allCharSeries.length; i++)
@@ -479,7 +479,7 @@ function updateStageMode()
 	document.getElementById("stage-theme-description").innerHTML = stageModeDescriptions[findInArray(stageModes, stageMode)];
 	if (stageMode == "series")
 	{
-		addElement("select", "Select Series", "stage-theme", [["id", "stage-series-select"], ["multiple", "multiple"], ["onclick", "updateStageSeries()"]]);
+		addElement("select", "Select Series", "stage-theme", [["id", "stage-series-select"], ["multiple", "multiple"], ["onchange", "updateStageSeries()"]]);
 		addElement("optgroup", "", "stage-series-select", [["disabled",null],["hidden",null]])
 		addElement("option", "--Select Series--", "stage-series-select", [["value",null]])
 		for (var i = 0; i < allStageSeries.length; i++)
