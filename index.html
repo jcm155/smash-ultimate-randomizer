@@ -4,8 +4,8 @@
 		<title>Super Smash Bros. Ultimate Randomizer</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="style.css">
 		<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,800&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="style.css">
 		<link rel="icon" href="favicon.ico" type="image/x-icon"/>
 	</head>      
 	<body>
@@ -106,16 +106,34 @@
 				  <form action="/action_page.php" class="form-container">
 				    <fieldset>
 				    	<legend>Advanced Options</legend>
-				    	<p class="setting-description">Max Players:</p>
-				    	<input type="number" id="max-player-setting" value=8 onchange="updateMaxPlayers()"></input>
-				    	<p class="setting-description">Color-coded Results<input type="checkbox" id="color-toggle" onchange="updateColors()"></input></p>
-				    	<p class="setting-description">Include BF/Ω Forms<input type="checkbox" id="alt-stage-toggle" onchange="updateAltForms()"></input></p>
-				    	<p class="setting-description">Choose characters to never select:</p>
-				    	<select id="removed-chars" multiple="multiple" onchange="updateRemovedChars()">Choose characters to never select:</select>
-				    	<p class="setting-description">Choose stages to never select:</p>
-				    	<select id="removed-stages" multiple="multiple" onchange="updateRemovedStages()">Choose stages to never select:</select>
-				    	<p class="setting-description">Adjust strictness of 'tournament-legal' stages:</p>
-				    	<p id="legality-ctrl-description">Very Strict<input type="range" min="0" max="5" value="1" class="slider" id="legality-control" onchange="updateLegality()">Very Relaxed</p>
+				    	<div id="max-player-div">
+					    	<p class="setting-description">Max Players:</p>
+					    	<input type="number" id="max-player-setting" value=8 onchange="updateMaxPlayers()"></input>
+					    </div>
+					    <div id="color-toggle-div">
+					    	<label class="container">Color-coded results:
+								<input type="checkbox" id="color-toggle"  onchange="updateColors()">
+								<span class="checkmark"></span>
+							</label>
+					    </div>
+				    	<div id="alt-stage-toggle-div">
+					    	<label class="container">Include BF/Ω forms:
+								<input type="checkbox" id="alt-stage-toggle" onchange="updateAltForms()">
+								<span class="checkmark" onchange="updateAltForms()"></span>
+							</label>
+					    </div>
+					    <div id="removed-chars-div">
+					    	<p class="setting-description">Choose characters to never select:</p>
+				    		<select id="removed-chars" multiple="multiple" onchange="updateRemovedChars()">Choose characters to never select:</select>
+					    </div>
+					    <div id="removed-stages-div">
+					    	<p class="setting-description">Choose stages to never select:</p>
+				    		<select id="removed-stages" multiple="multiple" onchange="updateRemovedStages()">Choose stages to never select:</select>
+					    </div>
+					    <div id="legality-control-div">
+					    	<p class="setting-description">Adjust strictness of 'tournament-legal' stages:</p>
+				    		<p id="legality-ctrl-description">Very Strict<input type="range" min="0" max="5" value="1" class="slider" id="legality-control" onchange="updateLegality()">Very Relaxed</p>
+					    </div>
 				    	<button class="btn cancel" id="btn-cancel" onclick="closeForm()">Close</button>
 				    </fieldset>
 				  </form>
@@ -123,9 +141,9 @@
 	  		</fieldset>
 	    </form>
 	    <div class = "results" id="results">
-	    	<p>Results will appear here!</p>
+	    	<div class="results-text" id="results-text">Results will appear here!</div>
 	    </div>
 	    <script src="script.js"></script>
 	</body>
-	<footer>© 2020 Joshua Mateer</footer>
+	<footer>Created by Joshua Mateer</footer>
 </html>

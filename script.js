@@ -44,6 +44,25 @@ if ("maxTouchPoints" in navigator) {
     }
 }
 
+
+function handleFirstTab(e) {
+    if (e.keyCode === 9) { // the "I am a keyboard user" key
+        document.body.classList.add('user-is-tabbing');
+        window.removeEventListener('keydown', handleFirstTab);
+        window.addEventListener('mousemove', handleFirstMouseMove);
+    }
+}
+
+function handleFirstMouseMove() {
+	document.body.classList.remove('user-is-tabbing');
+	window.removeEventListener('mousemove', handleFirstMouseMove);
+	window.addEventListener('keydown', handleFirstTab);
+}
+
+window.addEventListener('keydown', handleFirstTab);
+window.addEventListener('mousemove', handleFirstMouseMove);
+
+
 var charModeElements = document.getElementById("char-theme-select").getElementsByTagName("option");
 var charModes = []
 for (var mode = 0; mode < charModeElements.length; mode++)
@@ -946,6 +965,8 @@ function legalStages(mode)
 
 function generateResults()
 {
+	updateNumOfChars();
+	updateNumOfStages();
 	var playerList = playerNames();
 	var charsInMode = legalChars(charMode);
 	var stagesInMode = legalStages(stageMode);
@@ -963,64 +984,16 @@ function generateResults()
 		resultLists.push(generateUniqueNums(numOfChars,0,charsInMode.length-1));
 	}
 	resultLists.push(generateUniqueNums(numOfStages,0,stagesInMode.length-1));
-	document.getElementById("results").innerHTML = "Results:";
+	document.getElementById("results-text").innerHTML = "Results:";
 	for (var player = 0; player < numOfPlayers; player++)
 	{
-		/*
-		if (includeColorfulResults)
-		{
-			if (numOfChars == 1)
-			{
-				addElement("p", playerList[player]+", your character is:", "results", [["id", "p"+(player+1)+"-result"], ["class", "result-line"]]);
-			}
-			else
-			{
-				addElement("p", playerList[player]+", your choices are:", "results", [["id", "p"+(player+1)+"-result"], ["class", "result-line"]]);
-			}
-		}
-		else
-		{
-			if (numOfChars == 1)
-			{
-				addElement("p", playerList[player]+", your character is:", "results", [["id", "p"+(player+1)+"-result-plain"], ["class", "result-line"]]);
-			}
-			else
-			{
-				addElement("p", playerList[player]+", your choices are:", "results", [["id", "p"+(player+1)+"-result-plain"], ["class", "result-line"]]);
-			}
-		}
-		for (var char = 0; char < numOfChars; char++)
-		{
-			if(includeColorfulResults)
-			{
-				if (char == 0)
-				{
-					document.getElementById("p"+(player+1)+"-result").innerHTML += " "+characters[charsInMode[resultLists[player][char]]].name;
-				}
-				else
-				{
-					document.getElementById("p"+(player+1)+"-result").innerHTML += ", "+characters[charsInMode[resultLists[player][char]]].name;
-				}
-			}
-			else
-			{
-				if (char == 0)
-				{
-					document.getElementById("p"+(player+1)+"-result-plain").innerHTML += " "+characters[charsInMode[resultLists[player][char]]].name;
-				}
-				else
-				{
-					document.getElementById("p"+(player+1)+"-result-plain").innerHTML += ", "+characters[charsInMode[resultLists[player][char]]].name;
-				}
-			}
-		}*/
 		if (numOfChars == 1)
 		{
-			addElement("p", playerList[player]+", your character is:", "results", [["id", "p"+(player+1)+"-result"], ["class", "result-line"]]);
+			addElement("p", playerList[player]+", your character is:", "results-text", [["id", "p"+(player+1)+"-result"], ["class", "result-line"]]);
 		}
 		else
 		{
-			addElement("p", playerList[player]+", your choices are:", "results", [["id", "p"+(player+1)+"-result"], ["class", "result-line"]]);
+			addElement("p", playerList[player]+", your choices are:", "results-text", [["id", "p"+(player+1)+"-result"], ["class", "result-line"]]);
 		}
 		for (var char = 0; char < numOfChars; char++)
 		{
@@ -1038,15 +1011,15 @@ function generateResults()
 	{
 		for (var i = 0; i < numOfPlayers; i++)
 		{
-			document.getElementById("p"+(i+1)+"-result").style.color = playerColors[(i)%8];
+			document.getElementById("p"+(i+1)+"-result").style.color = playerColors[i%8];
 		}
 	}
 	if (numOfStages == 1) {
-		addElement("p", "Your stage is:", "results", [["id", "stage-result"], ["class", "result-line"]]);
+		addElement("p", "Your stage is:", "results-text", [["id", "stage-result"], ["class", "result-line"]]);
 	}
 	else
 	{
-		addElement("p", "Your stage choices are:", "results", [["id", "stage-result"], ["class", "result-line"]]);
+		addElement("p", "Your stage choices are:", "results-text", [["id", "stage-result"], ["class", "result-line"]]);
 	}
 	for (var stage = 0; stage < numOfStages; stage++)
 	{
