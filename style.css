@@ -1,12 +1,16 @@
-body, html {
-  height: 100%;
-  margin: 0;
+body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #222;
   display: flex;
   flex-direction: column;
   min-height: 1vh;
 }
+
+body, html {
+  margin: 0;
+  height: 100%;
+}
+
 
 body:not(.user-is-tabbing) button:focus,
 body:not(.user-is-tabbing) input:focus,
@@ -75,8 +79,7 @@ input, select {
   font-weight: 1000;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   background-color: #222;
-  /*background-image: url("smash-ultimate-mural.jpg");*/
-  background-color: green;
+  background-image: url("smash-ultimate-mural.jpg");
   background-size: auto;
   background-position: center left;
   background-repeat: repeat-y;
