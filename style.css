@@ -392,7 +392,7 @@ footer {
     z-index: 9;
     background-image: linear-gradient(-30deg, #ccc, #555, #ccc, #555, #ccc);
     width: 93%;
-    margin-top: -340px; /* Negative half of height. */
+    margin-top: -240px; /* Negative half of height. */
     margin-left: -50%; /* Negative half of width. */
   }
 
