@@ -10,7 +10,7 @@ Add some spice to your Super Smash Bros. Ultimate Matches with this randomizer! 
 -Customizable max number of players  
 -Option to make results appear multi-colored  
 -Option to include Battlefield and Omega forms  
--Customizable 'Ban list' for characters or stages which ensures that they won't be selected
+-Customizable 'ban list' for characters or stages which ensures that they won't be selected  
 -Adjustable tournament legality for stricter or less strict rulesets
 
 ### Version History:
