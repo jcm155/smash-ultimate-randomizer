@@ -75,7 +75,8 @@ input, select {
   font-weight: 1000;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   background-color: #222;
-  background-image: url("smash-ultimate-mural.jpg");
+  /*background-image: url("smash-ultimate-mural.jpg");*/
+  background-color: green;
   background-size: auto;
   background-position: center left;
   background-repeat: repeat-y;
@@ -392,8 +393,8 @@ footer {
     z-index: 9;
     background-image: linear-gradient(-30deg, #ccc, #555, #ccc, #555, #ccc);
     width: 93%;
-    margin-top: -240px; /* Negative half of height. */
-    margin-left: -50%; /* Negative half of width. */
+    margin-top: -270px;
+    margin-left: -50%;
   }
 
   .column {
