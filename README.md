@@ -36,3 +36,6 @@ Add some spice to your Super Smash Bros. Ultimate Matches with this randomizer! 
 -Standardized slider design  
 -Fixed issue with Advanced Options menu on mobile devices  
 -Made it so page tries to fit to window by default, but can expand if necessary  
+
+#### Version 1.3.1 (6/2/2020):
+-Added a 'Third-Party' option to stages
