@@ -5,7 +5,7 @@ Add some spice to your Super Smash Bros. Ultimate Matches with this randomizer! 
 -Customizable player names  
 -Settings to only generate one type of character, such as swordfighters or Super Mario Bros. characters  
 -Option to select how many character options are generated  
--Settings to only generate one type of stage, such as large or tournament-legal stages.
+-Settings to only generate one type of stage, such as large or tournament-legal stages.  
 -Option to select how many stage options are generated  
 -Customizable max number of players  
 -Option to make results appear multi-colored  
