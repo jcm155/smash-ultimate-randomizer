@@ -31,7 +31,7 @@ Add some spice to your Super Smash Bros. Ultimate Matches with this randomizer! 
 -Added a scrolling effect to the results background  
 
 #### Version 1.3.0 (5/28/2020):
--Added version history to README
+-Added version history to README  
 -Standardized checkbox design  
 -Standardized slider design  
 -Fixed issue with Advanced Options menu on mobile devices  
