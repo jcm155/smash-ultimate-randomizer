@@ -612,6 +612,20 @@ function updateMaxPlayers()
 function updateColors()
 {
 	includeColorfulResults = document.getElementById("color-toggle").checked;
+	if (includeColorfulResults)
+	{
+		for (var i = 0; i < numOfPlayers; i++)
+		{
+			document.getElementById("p"+(i+1)+"-result").style.color = playerColors[i%8];
+		}
+	}
+	else
+	{
+		for (var i = 0; i < numOfPlayers; i++)
+		{
+			document.getElementById("p"+(i+1)+"-result").style.color = "#ffffff";
+		}
+	}
 }
 
 //update various menu options based on whether or not the user wants BF and Omega forms of stages
