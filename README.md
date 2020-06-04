@@ -39,3 +39,6 @@ Add some spice to your Super Smash Bros. Ultimate Matches with this randomizer! 
 
 #### Version 1.3.1 (6/2/2020):
 -Added a 'Third-Party' option to stages
+
+#### Version 1.3.2 (6/4/2020):
+-Fixed rare glitch with removed stages and BF and Omega forms which caused the site to crash
