@@ -131,6 +131,10 @@ input, select {
   background-color: #333;
 }
 
+#player-div {
+  margin-bottom: 10px;
+}
+
 .char-select-num {
   margin: 20px 0;
 }

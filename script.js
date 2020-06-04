@@ -1,10 +1,11 @@
+// Set the variables based on the contents of the html form
 var NOT_FOUND = -1;
 var maxPlayers = document.getElementById("max-player-setting").value;
 var includeAltForms = document.getElementById("alt-stage-toggle").checked;
 var includeColorfulResults = document.getElementById("color-toggle").checked;
-var legalityLevel = document.getElementById("legality-control").value; // Adjust how strict the legality is for tournment legal stages. ((STRICT) 0----5 (RELAXED))
-var lightweightMax = 81;// Set the maximum weight to be considered a lightweight.
-var heavyWeightMin = 107; // Set the minimum weight to be considered a heavyweight.
+var legalityLevel = document.getElementById("legality-control").value;
+var lightweightMax = 81;
+var heavyWeightMin = 107;
 
 var numOfPlayers = 2;
 var charMode = document.getElementById("char-theme-select").value;
@@ -12,6 +13,7 @@ var numOfChars = document.getElementById("char-select-num").value;
 var stageMode = document.getElementById("stage-theme-select").value;
 var numOfStages = document.getElementById("stage-select-num").value;
 
+//Create reference arrays that will be filled later
 var charSeries = [];
 var stageSeries = [];
 
@@ -20,6 +22,7 @@ var removedStages = [];
 
 var resultLists = [];
 
+//Colors for if the color-coded option is checked
 var playerColors = ["#d50000", "#2e6dee", "#daa50c", "#09972b", "#d0571e", "#1ba4d1", "#d62f7f", "#5130a7"];
 
 //Test for touch screen
@@ -44,7 +47,7 @@ if ("maxTouchPoints" in navigator) {
     }
 }
 
-
+//Test if user is using only a keyboard
 function handleFirstTab(e) {
     if (e.keyCode === 9) { // the "I am a keyboard user" key
         document.body.classList.add('user-is-tabbing');
@@ -53,26 +56,26 @@ function handleFirstTab(e) {
     }
 }
 
+//Test if user has a mouse
 function handleFirstMouseMove() {
 	document.body.classList.remove('user-is-tabbing');
 	window.removeEventListener('mousemove', handleFirstMouseMove);
 	window.addEventListener('keydown', handleFirstTab);
 }
 
+//Handle the events
 window.addEventListener('keydown', handleFirstTab);
 window.addEventListener('mousemove', handleFirstMouseMove);
 
-
+//Create the array of possible modes for characters
 var charModeElements = document.getElementById("char-theme-select").getElementsByTagName("option");
 var charModes = []
 for (var mode = 0; mode < charModeElements.length; mode++)
 {
 	charModes.push(charModeElements[mode].value);
 }
-var charModeDescriptions = ["Basic is best.", "Cause boys rule.", "#GIRLPOWER", "Play whoever you're beast at.", "Everyone needs a little chaos in their life.", "Back to the classics.", "I'm not super competitive, I swear!", "Have a nice trip.", "I don't remember it either.", "PLANT GANG. PLANT GANG. PLANT GANG.", "Bayonetta was fine, you were just bad.", "Surely just one more anime swordsman couldn't hurt.", "Wait, Shulk's not from Fire Emblem?", "The golden age of gaming.", "OH MY GOSH IT'S BANJO!!!", "Super Mario Galaxy defined this era. Come at me.", "Why is Byleth in this game anyways?", "Finally, some mascots I care about.", "I, too, want to die to anything.", "The bigger they are, the farther they can punch Yoshi.", "Because smuggling in extra characters is fine.", "Even I don't know what's coming..."];
 
-var stageModeDescriptions = ["I'm not picky.", "Ah, a fellow elitist.", "Good graphics are for nerds.", "Yes, there's more than Final Destination.", "But where's Rumble Falls?", "Still upset about Rainbow Road and Pac-Maze...", "Who even approved The Great Cave Offensive?", "Yes, all 9 of them.", "Paid stages > normal stages. Change my mind.", "I'm no Nintendo nerd.", "Which ones play MEGALOVANIA?", "Actually, I CAN run forever.", "Vanilla stages, just like you.", "Why bother choosing? They're all the same.", "FOX NO ITEMS OMEGA FORMS ONLY!", "At least you won't have stage hazards.", "Who played on Battlefield anyway?", "Half boring, half fun. Sound familiar?", "It's a secret to everybody..."];
-
+//Do the same for stage modes
 var stageModeElements = document.getElementById("stage-theme-select").getElementsByTagName("option");
 var stageModes = []
 for (var mode = 0; mode < stageModeElements.length-1; mode++)
@@ -87,6 +90,12 @@ stageModes.push("non-battlefield");
 stageModes.push("non-omega");
 stageModes.push("random");
 
+//Create the descriptions for all the different modes
+var charModeDescriptions = ["Basic is best.", "Cause boys rule.", "#GIRLPOWER", "Play whoever you're beast at.", "Everyone needs a little chaos in their life.", "Back to the classics.", "I'm not super competitive, I swear!", "Have a nice trip.", "I don't remember it either.", "PLANT GANG. PLANT GANG. PLANT GANG.", "Bayonetta was fine, you were just bad.", "Surely just one more anime swordsman couldn't hurt.", "Wait, Shulk's not from Fire Emblem?", "The golden age of gaming.", "OH MY GOSH IT'S BANJO!!!", "Super Mario Galaxy defined this era. Come at me.", "Why is Byleth in this game anyways?", "Finally, some mascots I care about.", "I, too, want to die to anything.", "The bigger they are, the farther they can punch Yoshi.", "Because smuggling in extra characters is fine.", "Even I don't know what's coming..."];
+
+var stageModeDescriptions = ["I'm not picky.", "Ah, a fellow elitist.", "Good graphics are for nerds.", "Yes, there's more than Final Destination.", "But where's Rumble Falls?", "Still upset about Rainbow Road and Pac-Maze...", "Who even approved The Great Cave Offensive?", "Yes, all 9 of them.", "Paid stages > normal stages. Change my mind.", "I'm no Nintendo nerd.", "Which ones play MEGALOVANIA?", "Actually, I CAN run forever.", "Vanilla stages, just like you.", "Why bother choosing? They're all the same.", "FOX NO ITEMS OMEGA FORMS ONLY!", "At least you won't have stage hazards.", "Who played on Battlefield anyway?", "Half boring, half fun. Sound familiar?", "It's a secret to everybody..."];
+
+//Constructor that holds character data
 function Character(charName, charNum, charSeries, charSex, charOrigin, charSmash, charWeight, charDLC, charHasSword, charIsVillain, charIsThirdParty, charIsMultislot, charIsNonHuman)
 {
 	this.name = charName;
@@ -104,9 +113,11 @@ function Character(charName, charNum, charSeries, charSex, charOrigin, charSmash
 	this.isNonHuman = charIsNonHuman;
 }
 
-function Stage(stageName, stageSeries, stageOrigin, stageLegal, stageDLC, stageLarge, stageThird)
+//Constructor that holds stage data
+function Stage(stageName, stageIndex, stageSeries, stageOrigin, stageLegal, stageDLC, stageLarge, stageThird)
 {
 	this.name = stageName;
+	this.index = stageIndex;
 	this.series = stageSeries;
 	this.firstSmashAppearance = stageOrigin;
 	this.legality = stageLegal;
@@ -228,114 +239,114 @@ for (var i = 0; i < characters.length; i++)
 
 stages = []
 //Assemble the stage data                                              dlc    large  3rd party
-stages.push(new Stage("Battlefield", "Super Smash Bros.", "Ultimate", 0, false, false, false))
-stages.push(new Stage("Final Destination", "Super Smash Bros.", "Ultimate", 0, false, false, false))
-stages.push(new Stage("Big Battlefield", "Super Smash Bros.", "Ultimate", 5, false, true, false))
-stages.push(new Stage("Peach's Castle", "Super Mario Bros.", "Smash 64", 5, true, false, false))
-stages.push(new Stage("Kongo Jungle", "Donkey Kong", "Smash 64", 5, true, false, false))
-stages.push(new Stage("Hyrule Castle", "Legend of Zelda", "Smash 64", 5, true, true, false))
-stages.push(new Stage("Super Happy Tree", "Yoshi's Island", "Smash 64", 5, false, false, false))
-stages.push(new Stage("Dream Land", "Kirby", "Smash 64", 5, true, false, false))
-stages.push(new Stage("Saffron City", "Pokemon", "Smash 64", 5, false, false, false))
-stages.push(new Stage("Mushroom Kingdom", "Super Mario Bros.", "Smash 64", 5, false, false, false))
-stages.push(new Stage("Princess Peach's Castle", "Super Mario Bros.", "Melee", 5, false, true, false))
-stages.push(new Stage("Rainbow Cruise", "Super Mario Bros.", "Melee", 4, false, false, false))
-stages.push(new Stage("Kongo Falls", "Donkey Kong", "Melee", 5, false, false, false))
-stages.push(new Stage("Jungle Japes", "Donkey Kong", "Melee", 5, false, false, false))
-stages.push(new Stage("Great Bay", "Legend of Zelda", "Melee", 5, false, false, false))
-stages.push(new Stage("Temple", "Legend of Zelda", "Melee", 5, false, true, false))
-stages.push(new Stage("Brinstar", "Metroid", "Melee", 5, false, false, false))
-stages.push(new Stage("Yoshi's Island (Melee)", "Yoshi's Island", "Melee", 5, false, false, false))
-stages.push(new Stage("Yoshi's Story", "Yoshi's Island", "Melee", 2, false, false, false))
-stages.push(new Stage("Fountain of Dreams", "Kirby", "Melee", 5, false, false, false))
-stages.push(new Stage("Green Greens", "Kirby", "Melee", 5, false, false, false))
-stages.push(new Stage("Corneria", "Star Fox", "Melee", 5, false, true, false))
-stages.push(new Stage("Venom", "Star Fox", "Melee", 5, false, true, false))
-stages.push(new Stage("Pokemon Stadium", "Pokemon", "Melee", 3, false, false, false))
-stages.push(new Stage("Onett", "Earthbound", "Melee", 5, false, true, false))
-stages.push(new Stage("Mushroom Kingdom II", "Super Mario Bros.", "Melee", 5, false, false, false))
-stages.push(new Stage("Brinstar Depths", "Metroid", "Melee", 5, false, false, false))
-stages.push(new Stage("Big Blue", "F-Zero", "Melee", 5, false, false, false))
-stages.push(new Stage("Fourside", "Earthbound", "Melee", 5, false, true, false))
-stages.push(new Stage("Delfino Plaza", "Super Mario Bros.", "Brawl", 5, false, false, false))
-stages.push(new Stage("Mushroomy Kingdom", "Super Mario Bros.", "Brawl", 5, false, false, false))
-stages.push(new Stage("Figure-8 Circuit", "Super Mario Bros.", "Brawl", 5, false, false, false))
-stages.push(new Stage("Warioware, Inc.", "Warioware", "Brawl", 3, false, false, false))
-stages.push(new Stage("Bridge of Eldin", "Legend of Zelda", "Brawl", 5, false, true, false))
-stages.push(new Stage("Norfair", "Metroid", "Brawl", 5, false, false, false))
-stages.push(new Stage("Frigate Orpheon", "Metroid", "Brawl", 4, false, false, false))
-stages.push(new Stage("Yoshi's Island", "Yoshi's Island", "Brawl", 3, false, false, false))
-stages.push(new Stage("Halberd", "Kirby", "Brawl", 4, false, false, false))
-stages.push(new Stage("Lylat Cruise", "Star Fox", "Brawl", 2, false, false, false))
-stages.push(new Stage("Pokemon Stadium 2", "Pokemon", "Brawl", 0, false, false, false))
-stages.push(new Stage("Port Town Aero Dive", "F-Zero", "Brawl", 5, false, false, false))
-stages.push(new Stage("Castle Siege", "Fire Emblem", "Brawl", 4, false, false, false))
-stages.push(new Stage("Distant Planet", "Pikmin", "Brawl", 5, false, false, false))
-stages.push(new Stage("Smashville", "Animal Crossing", "Brawl", 0, false, false, false))
-stages.push(new Stage("New Pork City", "Earthbound", "Brawl", 5, false, true, false))
-stages.push(new Stage("Summit", "Other", "Brawl", 5, false, false, false))
-stages.push(new Stage("Skyworld", "Kid Icarus", "Brawl", 5, false, false, false))
-stages.push(new Stage("Shadow Moses Island", "Metal Gear", "Brawl", 5, false, false, true))
-stages.push(new Stage("Luigi's Mansion", "Super Mario Bros.", "Brawl", 5, false, false, false))
-stages.push(new Stage("Pirate Ship", "Legend of Zelda", "Brawl", 5, true, false, false))
-stages.push(new Stage("Spear Pillar", "Pokemon", "Brawl", 5, false, false, false))
-stages.push(new Stage("75m", "Donkey Kong", "Brawl", 5, false, true, false))
-stages.push(new Stage("Mario Bros.", "Super Mario Bros.", "Brawl", 5, false, true, false))
-stages.push(new Stage("Hanenbow", "Other", "Brawl", 5, false, true, false))
-stages.push(new Stage("Green Hill Zone", "Sonic", "Brawl", 5, false, false, true))
-stages.push(new Stage("3D Land", "Super Mario Bros.", "3DS", 5, false, false, false))
-stages.push(new Stage("Golden Plains", "Super Mario Bros.", "3DS", 5, false, false, false))
-stages.push(new Stage("Paper Mario", "Super Mario Bros.", "3DS", 5, false, false, false))
-stages.push(new Stage("Gerudo Valley", "Legend of Zelda", "3DS", 5, false, false, false))
-stages.push(new Stage("Spirit Train", "Legend of Zelda", "3DS", 5, false, false, false))
-stages.push(new Stage("Dream Land GB", "Kirby", "3DS", 5, false, false, false))
-stages.push(new Stage("Unova Pokemon League", "Pokemon", "3DS", 3, false, false, false))
-stages.push(new Stage("Prism Tower", "Pokemon", "3DS", 5, false, false, false))
-stages.push(new Stage("Mute City SNES", "F-Zero", "3DS", 5, false, false, false))
-stages.push(new Stage("Magicant", "Earthbound", "3DS", 5, false, false, false))
-stages.push(new Stage("Arena Ferox", "Fire Emblem", "3DS", 5, false, false, false))
-stages.push(new Stage("Reset Bomb Forest", "Kid Icarus", "3DS", 5, false, false, false))
-stages.push(new Stage("Tortimer Island", "Animal Crossing", "3DS", 5, false, true, false))
-stages.push(new Stage("Balloon Fight", "Other", "3DS", 5, false, false, false))
-stages.push(new Stage("Living Room", "Other", "3DS", 5, false, true, false))
-stages.push(new Stage("Find Mii", "Other", "3DS", 5, false, false, false))
-stages.push(new Stage("Tomodachi Life", "Other", "3DS", 5, false, false, false))
-stages.push(new Stage("PictoChat 2", "Other", "3DS", 5, false, false, false))
-stages.push(new Stage("Mushroom Kingdom U", "Super Mario Bros.", "Wii U", 5, false, true, false))
-stages.push(new Stage("Mario Galaxy", "Super Mario Bros.", "Wii U", 5, false, true, false))
-stages.push(new Stage("Mario Circuit", "Super Mario Bros.", "Wii U", 5, false, false, false))
-stages.push(new Stage("Skyloft", "Legend of Zelda", "Wii U", 3, false, true, false))
-stages.push(new Stage("The Great Cave Offensive", "Kirby", "Wii U", 5, false, true, false))
-stages.push(new Stage("Kalos Pokemon League", "Pokemon", "Wii U", 1, false, false, false))
-stages.push(new Stage("Coliseum", "Fire Emblem", "Wii U", 5, false, true, false))
-stages.push(new Stage("Flat Zone X", "Game & Watch", "Wii U", 5, false, false, false))
-stages.push(new Stage("Palutena's Temple", "Kid Icarus", "Wii U", 5, false, true, false))
-stages.push(new Stage("Gamer", "Warioware", "Wii U", 5, false, false, false))
-stages.push(new Stage("Garden of Hope", "Pikmin", "Wii U", 5, false, true, false))
-stages.push(new Stage("Town and City", "Animal Crossing", "Wii U", 0, false, false, false))
-stages.push(new Stage("Wii Fit Studio", "Wii Fit", "Wii U", 5, false, true, false))
-stages.push(new Stage("Boxing Ring", "Punch-Out", "Wii U", 5, false, true, false))
-stages.push(new Stage("Gaur Plain", "Xenoblade Chronicles", "Wii U", 5, false, true, false))
-stages.push(new Stage("Duck Hunt", "Other", "Wii U", 5, false, false, false))
-stages.push(new Stage("Wrecking Crew", "Other", "Wii U", 5, false, true, false))
-stages.push(new Stage("Pilotwings", "Other", "Wii U", 5, false, false, false))
-stages.push(new Stage("Wuhu Island", "Other", "Wii U", 4, false, false, false))
-stages.push(new Stage("Windy Hill Zone", "Sonic", "Wii U", 5, false, true, true))
-stages.push(new Stage("Wily Castle", "Mega Man", "Wii U", 4, false, false, true))
-stages.push(new Stage("PAC-LAND", "PAC-MAN", "Wii U", 5, false, true, true))
-stages.push(new Stage("Super Mario Maker", "Super Mario Bros.", "Wii U", 5, true, false, false))
-stages.push(new Stage("Suzaku Castle", "Street Fighter", "Wii U", 5, true, true, true))
-stages.push(new Stage("Midgar", "Final Fantasy", "Wii U", 5, true, false, true))
-stages.push(new Stage("Umbra Clock Tower", "Bayonetta", "Wii U", 5, true, true, true))
-stages.push(new Stage("New Donk City Hall", "Super Mario Bros.", "Ultimate", 5, false, true, false))
-stages.push(new Stage("Great Plateau Tower", "Legend of Zelda", "Ultimate", 5, false, false, false))
-stages.push(new Stage("Moray Towers", "Splatoon", "Ultimate", 5, false, true, false))
-stages.push(new Stage("Dracula's Castle", "Castlevania", "Ultimate", 5, false, true, false))
-stages.push(new Stage("Mementos", "Persona", "Ultimate", 4, true, true, true))
-stages.push(new Stage("Yggdrasil's Altar", "Dragon Quest", "Ultimate", 3, true, true, true))
-stages.push(new Stage("Spiral Mountain", "Banjo-Kazooie", "Ultimate", 5, true, false, true))
-stages.push(new Stage("King of Fighters Stadium", "Fatal Fury", "Ultimate", 5, true, false, true))
-stages.push(new Stage("Garreg Mach Monastery", "Fire Emblem", "Ultimate", 5, true, false, false))
+stages.push(new Stage("Battlefield", 0, "Super Smash Bros.", "Ultimate", 0, false, false, false))
+stages.push(new Stage("Final Destination", 1, "Super Smash Bros.", "Ultimate", 0, false, false, false))
+stages.push(new Stage("Big Battlefield", 2, "Super Smash Bros.", "Ultimate", 5, false, true, false))
+stages.push(new Stage("Peach's Castle", 3, "Super Mario Bros.", "Smash 64", 5, true, false, false))
+stages.push(new Stage("Kongo Jungle", 4, "Donkey Kong", "Smash 64", 5, true, false, false))
+stages.push(new Stage("Hyrule Castle", 5, "Legend of Zelda", "Smash 64", 5, true, true, false))
+stages.push(new Stage("Super Happy Tree", 6, "Yoshi's Island", "Smash 64", 5, false, false, false))
+stages.push(new Stage("Dream Land", 7, "Kirby", "Smash 64", 5, true, false, false))
+stages.push(new Stage("Saffron City", 8, "Pokemon", "Smash 64", 5, false, false, false))
+stages.push(new Stage("Mushroom Kingdom", 9, "Super Mario Bros.", "Smash 64", 5, false, false, false))
+stages.push(new Stage("Princess Peach's Castle", 10, "Super Mario Bros.", "Melee", 5, false, true, false))
+stages.push(new Stage("Rainbow Cruise", 11, "Super Mario Bros.", "Melee", 4, false, false, false))
+stages.push(new Stage("Kongo Falls", 12, "Donkey Kong", "Melee", 5, false, false, false))
+stages.push(new Stage("Jungle Japes", 13, "Donkey Kong", "Melee", 5, false, false, false))
+stages.push(new Stage("Great Bay", 14, "Legend of Zelda", "Melee", 5, false, false, false))
+stages.push(new Stage("Temple", 15, "Legend of Zelda", "Melee", 5, false, true, false))
+stages.push(new Stage("Brinstar", 16, "Metroid", "Melee", 5, false, false, false))
+stages.push(new Stage("Yoshi's Island (Melee)", 17, "Yoshi's Island", "Melee", 5, false, false, false))
+stages.push(new Stage("Yoshi's Story", 18, "Yoshi's Island", "Melee", 2, false, false, false))
+stages.push(new Stage("Fountain of Dreams", 19, "Kirby", "Melee", 5, false, false, false))
+stages.push(new Stage("Green Greens", 20, "Kirby", "Melee", 5, false, false, false))
+stages.push(new Stage("Corneria", 21, "Star Fox", "Melee", 5, false, true, false))
+stages.push(new Stage("Venom", 22, "Star Fox", "Melee", 5, false, true, false))
+stages.push(new Stage("Pokemon Stadium", 23, "Pokemon", "Melee", 3, false, false, false))
+stages.push(new Stage("Onett", 24, "Earthbound", "Melee", 5, false, true, false))
+stages.push(new Stage("Mushroom Kingdom II", 25, "Super Mario Bros.", "Melee", 5, false, false, false))
+stages.push(new Stage("Brinstar Depths", 26, "Metroid", "Melee", 5, false, false, false))
+stages.push(new Stage("Big Blue", 27, "F-Zero", "Melee", 5, false, false, false))
+stages.push(new Stage("Fourside", 28,  "Earthbound", "Melee", 5, false, true, false))
+stages.push(new Stage("Delfino Plaza", 29, "Super Mario Bros.", "Brawl", 5, false, false, false))
+stages.push(new Stage("Mushroomy Kingdom", 30, "Super Mario Bros.", "Brawl", 5, false, false, false))
+stages.push(new Stage("Figure-8 Circuit", 31, "Super Mario Bros.", "Brawl", 5, false, false, false))
+stages.push(new Stage("Warioware, Inc.", 32, "Warioware", "Brawl", 3, false, false, false))
+stages.push(new Stage("Bridge of Eldin", 33, "Legend of Zelda", "Brawl", 5, false, true, false))
+stages.push(new Stage("Norfair", 34, "Metroid", "Brawl", 5, false, false, false))
+stages.push(new Stage("Frigate Orpheon", 35, "Metroid", "Brawl", 4, false, false, false))
+stages.push(new Stage("Yoshi's Island", 36, "Yoshi's Island", "Brawl", 3, false, false, false))
+stages.push(new Stage("Halberd", 37, "Kirby", "Brawl", 4, false, false, false))
+stages.push(new Stage("Lylat Cruise", 38, "Star Fox", "Brawl", 2, false, false, false))
+stages.push(new Stage("Pokemon Stadium 2", 39, "Pokemon", "Brawl", 0, false, false, false))
+stages.push(new Stage("Port Town Aero Dive", 40, "F-Zero", "Brawl", 5, false, false, false))
+stages.push(new Stage("Castle Siege", 41, "Fire Emblem", "Brawl", 4, false, false, false))
+stages.push(new Stage("Distant Planet", 42, "Pikmin", "Brawl", 5, false, false, false))
+stages.push(new Stage("Smashville", 43, "Animal Crossing", "Brawl", 0, false, false, false))
+stages.push(new Stage("New Pork City", 44, "Earthbound", "Brawl", 5, false, true, false))
+stages.push(new Stage("Summit", 45, "Other", "Brawl", 5, false, false, false))
+stages.push(new Stage("Skyworld", 46, "Kid Icarus", "Brawl", 5, false, false, false))
+stages.push(new Stage("Shadow Moses Island", 47, "Metal Gear", "Brawl", 5, false, false, true))
+stages.push(new Stage("Luigi's Mansion", 48, "Super Mario Bros.", "Brawl", 5, false, false, false))
+stages.push(new Stage("Pirate Ship", 49, "Legend of Zelda", "Brawl", 5, true, false, false))
+stages.push(new Stage("Spear Pillar", 50, "Pokemon", "Brawl", 5, false, false, false))
+stages.push(new Stage("75m", 51, "Donkey Kong", "Brawl", 5, false, true, false))
+stages.push(new Stage("Mario Bros.", 52, "Super Mario Bros.", "Brawl", 5, false, true, false))
+stages.push(new Stage("Hanenbow", 53, "Other", "Brawl", 5, false, true, false))
+stages.push(new Stage("Green Hill Zone", 54, "Sonic", "Brawl", 5, false, false, true))
+stages.push(new Stage("3D Land", 55, "Super Mario Bros.", "3DS", 5, false, false, false))
+stages.push(new Stage("Golden Plains", 56, "Super Mario Bros.", "3DS", 5, false, false, false))
+stages.push(new Stage("Paper Mario", 57, "Super Mario Bros.", "3DS", 5, false, false, false))
+stages.push(new Stage("Gerudo Valley", 58, "Legend of Zelda", "3DS", 5, false, false, false))
+stages.push(new Stage("Spirit Train", 59, "Legend of Zelda", "3DS", 5, false, false, false))
+stages.push(new Stage("Dream Land GB", 60, "Kirby", "3DS", 5, false, false, false))
+stages.push(new Stage("Unova Pokemon League", 61, "Pokemon", "3DS", 3, false, false, false))
+stages.push(new Stage("Prism Tower", 62, "Pokemon", "3DS", 5, false, false, false))
+stages.push(new Stage("Mute City SNES", 63, "F-Zero", "3DS", 5, false, false, false))
+stages.push(new Stage("Magicant", 64, "Earthbound", "3DS", 5, false, false, false))
+stages.push(new Stage("Arena Ferox", 65, "Fire Emblem", "3DS", 5, false, false, false))
+stages.push(new Stage("Reset Bomb Forest", 66, "Kid Icarus", "3DS", 5, false, false, false))
+stages.push(new Stage("Tortimer Island", 67, "Animal Crossing", "3DS", 5, false, true, false))
+stages.push(new Stage("Balloon Fight", 68, "Other", "3DS", 5, false, false, false))
+stages.push(new Stage("Living Room", 69, "Other", "3DS", 5, false, true, false))
+stages.push(new Stage("Find Mii", 70, "Other", "3DS", 5, false, false, false))
+stages.push(new Stage("Tomodachi Life", 71, "Other", "3DS", 5, false, false, false))
+stages.push(new Stage("PictoChat 2", 72, "Other", "3DS", 5, false, false, false))
+stages.push(new Stage("Mushroom Kingdom U", 73, "Super Mario Bros.", "Wii U", 5, false, true, false))
+stages.push(new Stage("Mario Galaxy", 74, "Super Mario Bros.", "Wii U", 5, false, true, false))
+stages.push(new Stage("Mario Circuit", 75, "Super Mario Bros.", "Wii U", 5, false, false, false))
+stages.push(new Stage("Skyloft", 76, "Legend of Zelda", "Wii U", 3, false, true, false))
+stages.push(new Stage("The Great Cave Offensive", 77, "Kirby", "Wii U", 5, false, true, false))
+stages.push(new Stage("Kalos Pokemon League", 78, "Pokemon", "Wii U", 1, false, false, false))
+stages.push(new Stage("Coliseum", 79, "Fire Emblem", "Wii U", 5, false, true, false))
+stages.push(new Stage("Flat Zone X", 80, "Game & Watch", "Wii U", 5, false, false, false))
+stages.push(new Stage("Palutena's Temple", 81, "Kid Icarus", "Wii U", 5, false, true, false))
+stages.push(new Stage("Gamer", 82, "Warioware", "Wii U", 5, false, false, false))
+stages.push(new Stage("Garden of Hope", 83, "Pikmin", "Wii U", 5, false, true, false))
+stages.push(new Stage("Town and City", 84, "Animal Crossing", "Wii U", 0, false, false, false))
+stages.push(new Stage("Wii Fit Studio", 85, "Wii Fit", "Wii U", 5, false, true, false))
+stages.push(new Stage("Boxing Ring", 86, "Punch-Out", "Wii U", 5, false, true, false))
+stages.push(new Stage("Gaur Plain", 87, "Xenoblade Chronicles", "Wii U", 5, false, true, false))
+stages.push(new Stage("Duck Hunt", 88, "Other", "Wii U", 5, false, false, false))
+stages.push(new Stage("Wrecking Crew", 89, "Other", "Wii U", 5, false, true, false))
+stages.push(new Stage("Pilotwings", 90, "Other", "Wii U", 5, false, false, false))
+stages.push(new Stage("Wuhu Island", 91, "Other", "Wii U", 4, false, false, false))
+stages.push(new Stage("Windy Hill Zone", 92, "Sonic", "Wii U", 5, false, true, true))
+stages.push(new Stage("Wily Castle", 93, "Mega Man", "Wii U", 4, false, false, true))
+stages.push(new Stage("PAC-LAND", 94, "PAC-MAN", "Wii U", 5, false, true, true))
+stages.push(new Stage("Super Mario Maker", 95, "Super Mario Bros.", "Wii U", 5, true, false, false))
+stages.push(new Stage("Suzaku Castle", 96, "Street Fighter", "Wii U", 5, true, true, true))
+stages.push(new Stage("Midgar", 97, "Final Fantasy", "Wii U", 5, true, false, true))
+stages.push(new Stage("Umbra Clock Tower", 98, "Bayonetta", "Wii U", 5, true, true, true))
+stages.push(new Stage("New Donk City Hall", 99, "Super Mario Bros.", "Ultimate", 5, false, true, false))
+stages.push(new Stage("Great Plateau Tower", 100, "Legend of Zelda", "Ultimate", 5, false, false, false))
+stages.push(new Stage("Moray Towers", 101, "Splatoon", "Ultimate", 5, false, true, false))
+stages.push(new Stage("Dracula's Castle", 102, "Castlevania", "Ultimate", 5, false, true, false))
+stages.push(new Stage("Mementos", 103, "Persona", "Ultimate", 4, true, true, true))
+stages.push(new Stage("Yggdrasil's Altar", 104, "Dragon Quest", "Ultimate", 3, true, true, true))
+stages.push(new Stage("Spiral Mountain", 105, "Banjo-Kazooie", "Ultimate", 5, true, false, true))
+stages.push(new Stage("King of Fighters Stadium", 106, "Fatal Fury", "Ultimate", 5, true, false, true))
+stages.push(new Stage("Garreg Mach Monastery", 107, "Fire Emblem", "Ultimate", 5, true, false, false))
 
 for (var i = 0; i < stages.length; i++)
 {
@@ -357,19 +368,23 @@ for (var i = 0; i < stages.length; i++)
 }
 
 //make a variable for the number of unique stages
-var totalUniqueStages = stages.length-3;
+var totalUniqueStages = stages.length;
 
 //add BF and Ω forms if the player wants them added
 if (includeAltForms)
 {
 	for (var i = 0; i<totalUniqueStages; i++)
 	{
-		stages.push(new Stage("BF "+stages[i+3].name, stages[i+3].series, stages[i+3].firstSmashAppearance, stages[i+3].legality, stages[i+3].dlc, stages[i+3].isLarge, stages[i+3].isThirdParty));
+		stages.push(new Stage("BF "+stages[i].name, stages[i].index+totalUniqueStages, stages[i].series, stages[i].firstSmashAppearance, stages[i].legality, stages[i].dlc, false, stages[i].isThirdParty));
 	}
 	for (var i = 0; i<totalUniqueStages; i++)
 	{
-		stages.push(new Stage("Ω "+stages[i+3].name, stages[i+3].series, stages[i+3].firstSmashAppearance, stages[i+3].legality, stages[i+3].dlc, stages[i+3].isLarge, stages[i+3].isThirdParty));
+		stages.push(new Stage("Ω "+stages[i].name, stages[i].index+totalUniqueStages*2, stages[i].series, stages[i].firstSmashAppearance, stages[i].legality, stages[i].dlc, false, stages[i].isThirdParty));
 	}
+	stages.splice(stages[findNameInArray(stages, "BF Battlefield"), 1]);
+	stages.splice(stages[findNameInArray(stages, "BF Big Battlefield"), 1]);
+	stages.splice(stages[findNameInArray(stages, "Ω Final Destination"), 1]);
+	stages.splice(stages[findNameInArray(stages, "Ω Big Battlefield"), 1]);
 }
 
 var allStageSeries = []
@@ -381,6 +396,7 @@ for (var i = 0; i < stages.length; i++)
 	}
 }
 
+//Make it so that buttons don't refresh the page
 document.getElementById("add-player-btn").addEventListener("click", function(event){
     event.preventDefault();
 	addPlayer();
@@ -568,32 +584,37 @@ function updateStageMode()
 	}
 }
 
+//update how many stage options will be generated
 function updateNumOfStages()
 {
 	numOfStages = document.getElementById("stage-select-num").value;
 }
 
+//update what series the stages will be selected from
 function updateCharSeries()
 {
 	charSeries = getSelected("char-series-select");
-	console.log(charSeries);
 }
 
+//update what series the stages will be selected from
 function updateStageSeries()
 {
 	stageSeries = getSelected("stage-series-select");
 }
 
+//update what the maximum allowed amount of players is
 function updateMaxPlayers()
 {
 	maxPlayers = document.getElementById("max-player-setting").value;
 }
 
+//update the multicolored results
 function updateColors()
 {
 	includeColorfulResults = document.getElementById("color-toggle").checked;
 }
 
+//update various menu options based on whether or not the user wants BF and Omega forms of stages
 function updateAltForms()
 {
 	includeAltForms = document.getElementById("alt-stage-toggle").checked;
@@ -609,12 +630,16 @@ function updateAltForms()
 		addElement("option", "Random...", "stage-theme-select", [["id","random-stage"], ["value", "random"]]);
 		for (var i = 0; i<totalUniqueStages; i++)
 		{
-			stages.push(new Stage("BF "+stages[i+3].name, stages[i+3].series, stages[i+3].firstSmashAppearance, stages[i+3].legality, stages[i+3].dlc, stages[i+3].isLarge, stages[i+3].isThirdParty));
+			stages.push(new Stage("BF "+stages[i].name, stages[i].index+totalUniqueStages, stages[i].series, stages[i].firstSmashAppearance, stages[i].legality, stages[i].dlc, false, stages[i].isThirdParty));
 		}
 		for (var i = 0; i<totalUniqueStages; i++)
 		{
-			stages.push(new Stage("Ω "+stages[i+3].name, stages[i+3].series, stages[i+3].firstSmashAppearance, stages[i+3].legality, stages[i+3].dlc, stages[i+3].isLarge, stages[i+3].isThirdParty));
+			stages.push(new Stage("Ω "+stages[i].name, stages[i].index+totalUniqueStages*2, stages[i].series, stages[i].firstSmashAppearance, stages[i].legality, stages[i].dlc, false, stages[i].isThirdParty));
 		}
+		stages.splice(findNameInArray(stages, "BF Battlefield"), 1);
+		stages.splice(findNameInArray(stages, "BF Big Battlefield"), 1);
+		stages.splice(findNameInArray(stages, "Ω Final Destination"), 1);
+		stages.splice(findNameInArray(stages, "Ω Big Battlefield"), 1);
 	}
 	else
 	{
@@ -631,6 +656,7 @@ function updateAltForms()
 	}
 }
 
+//Update the list of removed characters
 function updateRemovedChars()
 {
 	removedChars = getSelected("removed-chars");
@@ -650,6 +676,7 @@ function updateRemovedChars()
 	}
 }
 
+//Update the list of removed stages
 function updateRemovedStages()
 {
 	removedStages = getSelected("removed-stages");
@@ -660,30 +687,32 @@ function updateRemovedStages()
 			stages.splice(i, 1);
 		}
 	}
+	//Add in previously removed stages
 	for (var i = 0; i < allStageReference.length; i++)
 	{
 		if(!removedStages.includes(allStageReference[i].name) && findNameInArray(stages, allStageReference[i].name) == NOT_FOUND)
 		{
-			if(allStageReference[i].name == "Battlefield")
+			var stageLocation = stages.length-1;
+			if (allStageReference[i].index < stages[0].index)
 			{
-				stages.unshift(allStageReference[i])
+				stages.unshift(allStageReference[i]);
 			}
-			else if (allStageReference[i].name == "Final Destination")
-			{
-				stages.splice(1, 0, allStageReference[i])
-			}
-			else if (allStageReference[i].name == "Big Battlefield")
-			{
-				stages.splice(2, 0, allStageReference[i])
-			}
-			else
+			else if (allStageReference[i].index > stages[stages.length-1].index)
 			{
 				stages.push(allStageReference[i]);
+			}
+			else {
+				while (stages[stageLocation-1].index > allStageReference[i].index)
+				{
+					stageLocation--;
+				}
+				stages.splice(stageLocation, 0, allStageReference[i]);
 			}
 		}
 	}
 }
 
+//update the strictness of tournament-legal stages
 function updateLegality()
 {
 	legalityLevel = document.getElementById("legality-control").value;
@@ -788,7 +817,6 @@ function legalChars(mode)
 		if (mode == "series" && charSeries.includes(characters[i].series))
 		{
 			allowed.push(i);
-			console.log("Pushed "+characters[i].name);
 		}
 		if (mode == "third-party" && characters[i].isThirdParty)
 		{
@@ -829,88 +857,35 @@ function legalChars(mode)
 function legalStages(mode)
 {
 	allowed = [];
-	// push battlefield, FD, and Big Battlefield depending on what options are chosen
-	if (mode == "no-theme")
-	{
-		allowed.push(0);
-		allowed.push(1);
-		allowed.push(2);
-	}
-	if (mode == "normal")
-	{
-		allowed.push(0);
-		allowed.push(1);
-		allowed.push(2);
-	}
-	if (mode == "battlefield")
-	{
-		allowed.push(0);
-	}
-	if (mode == "omega")
-	{
-		allowed.push(1);
-	}
-	if (mode == "non-battlefield")
-	{
-		allowed.push(1);
-		allowed.push(2);
-	}
-	if (mode == "non-omega")
-	{
-		allowed.push(0);
-		allowed.push(2);
-	}
-	if (mode == "ultimate")
-	{
-		allowed.push(0);
-		allowed.push(1);
-		allowed.push(2);
-	}
-	if (mode == "series" && stageSeries.includes("Super Smash Bros."))
-	{
-		allowed.push(0);
-		allowed.push(1);
-		allowed.push(2);
-	}
-	if (mode == "tournament-legal")
-	{
-		allowed.push(0);
-		allowed.push(1);
-	}
-	if (mode == "large")
-	{
-		allowed.push(2);
-	}
-	//Now use logic to detrmine the rest of the allowed stages
-	for (var i = 3; i < stages.length; i++)
+	for (var i = 0; i < stages.length; i++)
 	{
 		if (mode == "no-theme")
 		{
 			allowed.push(i);
 		}
-		if (mode == "normal" && i < totalUniqueStages+3)
+		if (mode == "normal" && i < totalUniqueStages)
 		{
 			allowed.push(i);
 		}
-		if (mode == "battlefield" && i < totalUniqueStages+3)
+		if (mode == "battlefield" && i < totalUniqueStages)
 		{
 			allowed.push(i+totalUniqueStages);
 		}
-		if (mode == "omega" && i < totalUniqueStages+3)
+		if (mode == "omega" && i < totalUniqueStages)
 		{
 			allowed.push(i+totalUniqueStages*2);
 		}
-		if (mode == "non-normal" && i < totalUniqueStages+3)
+		if (mode == "non-normal" && i < totalUniqueStages)
 		{
 			allowed.push(i+totalUniqueStages);
 			allowed.push(i+totalUniqueStages*2);
 		}
-		if (mode == "non-battlefield" && i < totalUniqueStages+3)
+		if (mode == "non-battlefield" && i < totalUniqueStages)
 		{
 			allowed.push(i);
 			allowed.push(i+totalUniqueStages*2);
 		}
-		if (mode == "non-omega" && i < totalUniqueStages+3)
+		if (mode == "non-omega" && i < totalUniqueStages)
 		{
 			allowed.push(i);
 			allowed.push(i+totalUniqueStages);
