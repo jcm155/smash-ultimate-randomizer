@@ -8,7 +8,7 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<link rel="icon" href="favicon.ico" type="image/x-icon"/>
 	</head>      
-	<body>
+	<body onload="readCookie()">
 	  	<h1 class="heading" id="heading">Super Smash Bros. Ultimate Randomizer</h1>
 	  	<form class="settings">
 	  		<fieldset>
@@ -36,31 +36,16 @@
 							</div>
 							<div>
 								<select id="char-theme-select" onchange="updateCharMode()">
-									<option value="no-theme">No theme</option>
-									<option value="male">Male</option>
-									<option value="female">Female</option>
-									<option value="non-human">Non-human</option>
-									<option value="villain">Villain</option>
-									<option value="smash-64">Smash 64</option>
-									<option value="melee">Melee</option>
-									<option value="brawl">Brawl</option>
-									<option value="smash-4">Smash 4</option>
-									<option value="ultimate">Ultimate</option>
-									<option value="dlc">DLC</option>
-									<option value="sword">Sword</option>
-									<option value="series">Series</option>
-									<option value="1980s">1980s</option>
-									<option value="1990s">1990s</option>
-									<option value="2000s">2000s</option>
-									<option value="2010s">2010s</option>
-									<option value="third-party">Third-Party</option>
-									<option value="light">Light</option>
-									<option value="heavy">Heavy</option>
-									<option value="multislot">Multislot</option>
-									<option value="random">Random...</option>
 								</select>
 							</div>
 							<p id="char-theme-description">Basic is best.</p>
+							<select class="series-select" id="char-series-select" multiple="multiple" onchange="updateCharSeries()">
+								<optgroup disabled hidden></optgroup>
+								<option value=null>--Select Series--</option>
+							</select>
+							<div>
+								<p class="multiple-reminder" id="multiple-reminder-char">(CTRl+Click to select multiple.)</p>
+							</div>
 						</div>
 						<div class="char-select-num">
 							<div><p class="setting-description">Choose how many character options per player:</p></div>
@@ -74,22 +59,16 @@
 							</div>
 							<div>
 								<select id="stage-theme-select" onchange="updateStageMode()">
-									<option value="no-theme">No theme</option>
-									<option value="tournament-legal">Tournament-legal</option>
-									<option value="smash-64">Smash 64</option>
-									<option value="melee">Melee</option>
-									<option value="brawl">Brawl</option>
-									<option value="3ds">3DS</option>
-									<option value="wii-u">Wii U</option>
-									<option value="ultimate">Ultimate</option>
-									<option value="dlc">DLC</option>
-									<option value="third-party">Third Party</option>
-									<option value="series">Series</option>
-									<option value="large">Large</option>
-									<option id="random-stage" value="random">Random...</option>
 								</select>
 							</div>
 							<p id="stage-theme-description">I'm not picky.</p>
+							<select class="series-select" id="stage-series-select" multiple="multiple" onchange="updateStageSeries()">
+								<optgroup disabled hidden></optgroup>
+								<option value=null>--Select Series--</option>
+							</select>
+							<div>
+								<p class="multiple-reminder" id="multiple-reminder-stage">(CTRl+Click to select multiple.)</p>
+							</div>
 						</div>
 						<div class="stage-select-num">
 							<div><p class="setting-description">Choose how many stage options will be generated:</p></div>
@@ -97,14 +76,199 @@
 						</div>
 			  		</div>
 			  	</div>
+			  	<div class="customize-pos">
+				  	<button class="open-button-custom" id="open-button-custom">Custom...</button>
+				</div>
 			  	<div class="advanced-pos">
 				  	<button class="open-button" id="open-button">Advanced...</button>
 				</div>
 			  	<div class="submit-btn" id="submit-btn">
 			  		<button id="submit">GENERATE</button>
 			  	</div>
+			  	<div class="form-popup" id="custom-options">
+				  <form class="form-container">
+				    <fieldset>
+				    	<legend>Custom Settings</legend>
+				    	<div class="mii-fighter" id="mii-fighter-div">
+							<div class="mii-fighter-list" id="mii-fighter-list">
+				  				<p class="setting-description">Edit Mii Fighters:</p>
+							</div>
+							<div id="num-of-miis">
+				  				<button class="custom-btn" id="add-mii-btn" onclick="updateSelectedMii(miis.length+'')">New Mii Fighter</button>
+							</div>
+				  		</div>
+				  		<div class="custom-stages" id="custom-stage-div">
+							<div class="custom-stage-list" id="custom-stage-list">
+				  				<p class="setting-description">Custom Stages:</p>
+							</div>
+							<div id="num-of-custom-stages">
+				  				<button class="custom-btn" id="custom-stage-btn" onclick="addCustomStage()">Add Custom Stage</button>
+							</div>
+				  		</div>
+				  		<div class="custom-char-themes" id="custom-char-theme-div">
+							<div class="custom-char-theme-list" id="custom-char-theme-list">
+				  				<p class="setting-description">Custom Character Themes:</p>
+							</div>
+							<div id="num-of-custom-char-themes">
+				  				<button class="custom-btn" id="custom-char-theme-btn" onclick="addCustomCharTheme()">Add New Theme</button>
+							</div>
+				  		</div>
+				  		<div class="custom-stage-themes" id="custom-stage-theme-div">
+							<div class="custom-stage-theme-list" id="custom-stage-theme-list">
+				  				<p class="setting-description">Custom Stage Themes:</p>
+							</div>
+							<div id="num-of-custom-stage-themes">
+				  				<button class="custom-btn" id="custom-stage-theme-btn" onclick="addCustomStageTheme()">Add New Theme</button>
+							</div>
+				  		</div>
+					    <div>
+					    	<button class="btn cancel" id="btn-cancel-custom" onclick="closeFormCustom()">Close</button>
+					    </div>
+				    </fieldset>
+				  </form>
+				</div>
+				<div class="form-popup" id="mii-editor">
+				  <form class="form-container">
+				    <fieldset>
+				    	<legend>Mii Editor</legend>
+				    	<div>
+				    		<p class="mii-setting-description">Name:</p>
+							<input type="text" id="mii-name"></input>
+						</div>
+				    	<div>
+				    		<p class="mii-setting-description">Class:</p>
+							<select id="mii-type-select">
+								<option id="type-select-brawler" value=0>Brawler</option>
+								<option id="type-select-swordfighter" value=1>Swordfighter</option>
+								<option id="type-select-gunner" value=2>Gunner</option>
+							</select>
+						</div>
+						<div>
+				    		<p class="mii-setting-description">Gender:</p>
+							<select id="mii-gender-select">
+								<option id="gender-select-male" value="male">Male</option>
+								<option id="gender-select-female" value="female">Female</option>
+							</select>
+						</div>
+						<div>
+							<label class="container">Villain:
+								<input type="checkbox" id="mii-villain-toggle">
+								<span class="checkmark"></span>
+							</label>
+						</div>
+						<div>
+					    	<button class="btn delete" id="btn-delete-mii" onclick="deleteMii()">Delete Mii</button>
+					    </div>
+				    	<div>
+					    	<button class="btn cancel" id="btn-cancel-mii" onclick="closeMiiEditor()">Save Changes</button>
+					    </div>
+				    </fieldset>
+				  </form>
+				</div>
+				<div class="theme-editor" id="char-theme-editor">
+				  <form>
+				    <fieldset>
+				    	<legend>Character Theme Editor</legend>
+				    	<div>
+				    		<p class="char-theme-setting-description">What's your theme called?</p>
+							<input type="text" id="char-theme-name"></input>
+						</div>
+						<div>
+				    		<p class="char-theme-setting-description">Give it a punchy description.</p>
+							<input type="text" id="custom-char-theme-description"></input>
+						</div>
+						<div>
+							<p class="char-theme-setting-description">Only include characters whose:</p>
+						</div>
+				    	<div class="row">
+					    	<div class="column char-parameter" id="char-parameter-div">
+					    		<select id="char-theme-parameter-select" onchange="updateCharThemeParameter()">
+									<option id="char-parameter-0" value="name">Name</option>
+									<option id="char-parameter-1" value="number">Number</option>
+									<option id="char-parameter-2" value="series">Series</option>
+									<option id="char-parameter-3" value="gender">Gender</option>
+									<option id="char-parameter-4" value="origin">Origin Year</option>
+									<option id="char-parameter-5" value="smash">Origin Smash</option>
+									<option id="char-parameter-6" value="weight">Weight</option>
+									<option id="char-parameter-7" value="speed">Speed</option>
+									<option id="char-parameter-8" value="dlc">isDLC</option>
+									<option id="char-parameter-8" value="sword">hasSword</option>
+									<option id="char-parameter-10" value="villain">isVillain</option>
+									<option id="char-parameter-11" value="third-party">is3rdParty</option>
+									<option id="char-parameter-12" value="multislot">isMultislot</option>
+									<option id="char-parameter-13" value="nonhuman">isNonHuman</option>
+								</select>
+					    	</div>
+					    	<div class="column char-comparator" id="char-comparator-div" onchange="updateCharThemeComparator()">
+					    		<select id="char-theme-comparator-select">
+									<option id="char-comparator-0" value="=">is</option>
+									<option id="char-comparator-1" value="!=">is not</option>
+									<option id="char-comparator-6" value="among">is among</option>
+								</select>
+					    	</div>
+					    	<div class="column char-goal" id="char-goal-div">
+					    		<input type="text" id="char-goal" value="Mario"></input>
+					    	</div>
+					    </div>
+						<div>
+					    	<button class="btn delete" id="btn-delete-char-theme" onclick="deleteCharTheme()">Delete Theme</button>
+					    </div>
+				    	<div>
+					    	<button class="btn cancel" id="btn-cancel-char-theme" onclick="closeCharThemeEditor()">Save Changes</button>
+					    </div>
+				    </fieldset>
+				  </form>
+				</div>
+				<div class="theme-editor" id="stage-theme-editor">
+				  <form>
+				    <fieldset>
+				    	<legend>Stage Theme Editor</legend>
+				    	<div>
+				    		<p class="stage-theme-setting-description">What's your theme called?</p>
+							<input type="text" id="stage-theme-name"></input>
+						</div>
+						<div>
+				    		<p class="stage-theme-setting-description">Give it a punchy description.</p>
+							<input type="text" id="custom-stage-theme-description"></input>
+						</div>
+						<div>
+							<p class="stage-theme-setting-description">Only include stages whose:</p>
+						</div>
+				    	<div class="row">
+					    	<div class="column stage-parameter" id="stage-parameter-div">
+					    		<select id="stage-theme-parameter-select" onchange="updateStageThemeParameter()">
+									<option id="stage-parameter-0" value="name">Name</option>
+									<option id="stage-parameter-1" value="number">Number</option>
+									<option id="stage-parameter-2" value="series">Series</option>
+									<option id="stage-parameter-3" value="smash">Origin Smash</option>
+									<option id="stage-parameter-4" value="legality">Legality</option>
+									<option id="stage-parameter-5" value="dlc">isDLC</option>
+									<option id="stage-parameter-6" value="large">isLarge</option>
+									<option id="stage-parameter-7" value="third-party">is3rdParty</option>
+								</select>
+					    	</div>
+					    	<div class="column stage-comparator" id="stage-comparator-div" onchange="updateStageThemeComparator()">
+					    		<select id="stage-theme-comparator-select">
+									<option id="stage-comparator-0" value="=">is</option>
+									<option id="stage-comparator-1" value="!=">is not</option>
+									<option id="stage-comparator-6" value="among">is among</option>
+								</select>
+					    	</div>
+					    	<div class="column stage-goal" id="stage-goal-div">
+					    		<input type="text" id="stage-goal" value="Mario"></input>
+					    	</div>
+					    </div>
+						<div>
+					    	<button class="btn delete" id="btn-delete-stage-theme" onclick="deleteStageTheme()">Delete Theme</button>
+					    </div>
+				    	<div>
+					    	<button class="btn cancel" id="btn-cancel-stage-theme" onclick="closeStageThemeEditor()">Save Changes</button>
+					    </div>
+				    </fieldset>
+				  </form>
+				</div>
 				<div class="form-popup" id="advanced-options">
-				  <form action="/action_page.php" class="form-container">
+				  <form class="form-container">
 				    <fieldset>
 				    	<legend>Advanced Options</legend>
 				    	<div id="max-player-div">
@@ -121,6 +285,12 @@
 					    	<label class="container">Include BF/Ω forms:
 								<input type="checkbox" id="alt-stage-toggle" onchange="updateAltForms()">
 								<span class="checkmark" onchange="updateAltForms()"></span>
+							</label>
+					    </div>
+					    <div id="alt-stage-toggle-div">
+					    	<label class="container">Include custom stages:
+								<input type="checkbox" id="custom-stage-toggle" onchange="updateCustomStages()">
+								<span class="checkmark" onchange="updateCustomStages()"></span>
 							</label>
 					    </div>
 					    <div id="removed-chars-div">
@@ -144,6 +314,21 @@
 	    <div class = "results" id="results">
 	    	<div class="results-text" id="results-text">Results will appear here!</div>
 	    </div>
+	    <div class="form-popup" id="code-popup">
+			<form class="form-container">
+				<fieldset>
+					<div id="code-div">
+				    	<p class="setting-description">Enter code:</p>
+				    	<input type="text" id="enter-code" value=""></input>
+				    </div>
+				    <div>
+				    	<a id="preview-link" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Click here to see the next Smash character!</a>
+					</div>
+					<button class="btn cancel" id="code-btn-cancel" onclick="closeCode()">Enter</button>
+				</fieldset>
+			</form>
+		</div>
+	    <button id="code-btn">Enter Code</button>
 	    <footer>Created by Joshua Mateer</footer>
 	    <script src="script.js"></script>
 	</body>

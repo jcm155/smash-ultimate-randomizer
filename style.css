@@ -4,6 +4,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100%;
+  position: relative;
 }
 
 html {
@@ -22,6 +23,8 @@ body:not(.user-is-tabbing) textarea:focus {
   outline: none;
 }
 
+/*HEADING*/
+
 .heading {
   background-color: #000;
   text-align: center;
@@ -36,6 +39,9 @@ legend {
   font-size: 1.5em;
   text-align: center;
 }
+
+/* SETTINGS */
+
 .settings {
   background-color: #ccc;
   background-image: linear-gradient(-30deg, #ccc, #555, #ccc, #555, #ccc);
@@ -48,18 +54,12 @@ legend {
   border: 1px solid #000;
 }
 
-#char-theme-description {
-  font-size: 1em;
-  margin: 0;
-  padding: 0;
-}
-#stage-theme-description {
-  font-size: 1em;
-  margin: 0;
-  padding: 0;
+.setting-description {
+  margin-top: 10px;
+  margin-bottom: 0;
 }
 
-input, select {
+.settings input, .settings select {
   width: 250px;
   padding: 6px 5px;
   margin: 0;
@@ -72,32 +72,6 @@ input, select {
   font-size: 1em;
 }
 
-.results {
-  padding: 15px 0;
-  color: #fff;
-  margin: 0;
-  font-family: "Exo 2", "Verdana";
-  font-size: 1.5em;
-  text-align: center;
-  font-weight: 1000;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-  background-color: #222;
-  background-image: url("smash-ultimate-mural.jpg");
-  background-size: auto;
-  background-position: center left;
-  background-repeat: repeat-y;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  animation: scrollbg 120s infinite;
-  animation-timing-function: linear;
-  flex-grow: 1;
-}
-
-@keyframes scrollbg {
-  50% {background-position-x: right;}
-}
-
 .column {
   float: left;
   width: 33.33%;
@@ -108,6 +82,8 @@ input, select {
   display: table;
   clear: both;
 }
+
+/* Settings: Players */
 
 .player-list input {
   margin-bottom: 10px;
@@ -135,6 +111,8 @@ input, select {
   margin-bottom: 10px;
 }
 
+/* Settings: Characters */
+
 .char-select-num {
   margin: 20px 0;
 }
@@ -143,6 +121,24 @@ input, select {
   margin: 10px 0;
 }
 
+#char-theme-description {
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+}
+
+.multiple-reminder {
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+
+#char-series-select {
+  display: none;
+}
+
+/* Settings: Stages  */
+
 .stage-select-num {
   margin: 20px 0;
 }
@@ -150,6 +146,18 @@ input, select {
 .stage-select-num input {
   margin: 10px 0;
 }
+
+#stage-theme-description {
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+}
+
+#stage-series-select {
+  display: none;
+}
+
+/* Settings: Submit Button */
 
 .submit-btn {
   text-align: center;
@@ -172,37 +180,29 @@ input, select {
   background-color: #333;
 }
 
-footer {
-  background-color: #000;
-  text-align: center;
-  padding: 10px 0;
-  margin: 0;
+/* BUTTONS TO OPEN OTHER MENUS */
+
+.open-button-custom {
+  background-color: #555;
+  color: white;
+  padding: 6px 0px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  cursor: pointer;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 180px;
   font-family: "Exo 2", "Verdana";
-  color: #000;
-  font-size: 1.5em;
-  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+  font-size: 1em;
+  border-radius: 5px;
 }
 
-.setting-description {
-  margin-top: 10px;
-  margin-bottom: 0;
+.open-button-custom:hover {
+  background-color: #777;
 }
 
-.result-line {
-  margin: 10px 0;
-}
-
-#multiple-reminder-char {
-  margin: 0;
-  padding: 0;
-}
-
-#multiple-reminder-stage {
-  margin: 0;
-  padding: 0;
-}
-
-/* Button used to open the contact form - fixed at the bottom of the page */
 .open-button {
   background-color: #555;
   color: white;
@@ -224,7 +224,8 @@ footer {
   background-color: #777;
 }
 
-/* The popup form - hidden by default */
+/* ADVANCED OPTIONS MENU */
+
 .form-popup {
   display: none;
   position: fixed;
@@ -235,46 +236,19 @@ footer {
   width: 500px;
   top: 50%;
   left: 50%;
-  margin-top: -300px; /* Negative half of height. */
-  margin-left: -250px; /* Negative half of width. */
-}
-
-/* Add styles to the form container */
-.form-container {
-  max-width: 300px;
-  padding: 10px;
-  background-color: white;
+  margin-top: -45vh;
+  margin-left: -250px;
+  max-height: 90vh;
+  overflow: auto;
 }
 
 /* Full-width input fields */
-.form-container input[type=text], .form-container input[type=password] {
+.form-container input[type=text] {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
   border: none;
   background: #f1f1f1;
-}
-
-.cancel {
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  text-align: center;
-  font-size: 1em;
-  margin: 10px, 0px;
-  background-color: #000;
-  border-radius: 5px;
-  font-family: "Exo 2", "Verdana";
-}
-
-.cancel:hover {
-  background-color: #333;
-}
-
-#color-toggle-div {
-  text-align: center;
-  position: relative;
 }
 
 /* Customize the label (the container) */
@@ -343,6 +317,11 @@ footer {
   transform: rotate(45deg);
 }
 
+#color-toggle-div {
+  text-align: center;
+  position: relative;
+}
+
 #alt-stage-toggle-div {
   text-align: center;
 }
@@ -361,12 +340,13 @@ footer {
 
 #legality-control::-webkit-slider-runnable-track {
   width: 100%;
-  height: 8.4px;
+  height: 9px;
   cursor: pointer;
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
   background: #ccc;
   border-radius: 1.3px;
   border: 0.2px solid #010101;
+  margin: -1px 0;
 }
 
 #legality-control::-webkit-slider-thumb {
@@ -375,7 +355,7 @@ footer {
   width: 26px;
   border-radius: 100px;
   background-color: #ffffff;
-  background-image: url("favicon.png");
+  background-image: url("smash-logo.png");
   background-size: cover;
   background-repeat: no-repeat;
   cursor: pointer;
@@ -386,7 +366,401 @@ footer {
   background: #ccc;
 }
 
-/* Responsive layout - makes a one column-layout instead of two or three columns */
+.cancel {
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1em;
+  margin: 10px 0px;
+  background-color: #000;
+  border-radius: 5px;
+  font-family: "Exo 2", "Verdana";
+}
+
+.cancel:hover {
+  background-color: #333;
+}
+
+/* CUSTOM OPTIONS MENU */
+
+.custom-btn {
+  background-color: #000;
+  border: none;
+  color: white;
+  padding: 6px 35px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  font-family: "Exo 2", "Verdana";
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.custom-btn:hover {
+  background-color: #333;
+}
+
+.edit-custom-btn {
+  background-color: #fff;
+  border: none;
+  color: black;
+  padding: 6px 35px;
+  width: 230px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  font-family: "Exo 2", "Verdana";
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px 0;
+}
+
+.edit-custom-btn:hover {
+  background-color: #ccc;
+}
+
+.edit-mii-btn {
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+}
+
+.custom-stage-div {
+  margin-left: 45px;
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.custom-stage-btn {
+  background-color: #000;
+  border: none;
+  color: white;
+  padding: 6px 35px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  font-family: "Exo 2", "Verdana";
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.custom-stage-btn:hover {
+  background-color: #333;
+}
+
+.custom-stage {
+  background-color: #fff;
+  border: none;
+  color: black;
+  padding: 6px 35px;
+  width: 230px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  font-family: "Exo 2", "Verdana";
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+.custom-stage-div {
+  margin-top: 10px;
+}
+
+.custom-stage-theme-btn {
+  background-color: #000;
+  border: none;
+  color: white;
+  padding: 6px 35px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  font-family: "Exo 2", "Verdana";
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.custom-stage-theme-btn:hover {
+  background-color: #333;
+}
+
+.delete-stage {
+  background-color: #f00;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  font-size: 15px;
+  font-family: "Exo 2", "Verdana";
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 10px;
+  margin-top: 3px;
+  height: 30px;
+}
+
+.delete-stage:hover {
+  background-color: #c00;
+}
+
+.delete {
+  background-color: #f00;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  font-size: 15px;
+  font-family: "Exo 2", "Verdana";
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 10px;
+  position: absolute;
+  bottom: 35px;
+  right: 20px;
+}
+
+.delete:hover {
+  background-color: #c00;
+}
+
+/* MII EDITOR MENU */
+
+#mii-name {
+  width: 300px;
+}
+
+#mii-type-select {
+  margin: 10px 0;
+  width: 175px;
+}
+
+#mii-gender-select {
+  margin: 10px 0;
+  width: 175px;
+}
+
+.mii-setting-description {
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+/* CHAR THEME EDITOR MENU */
+
+.theme-editor {
+  display: none;
+  position: fixed;
+  border: 3px solid #333;
+  padding: 10px;
+  z-index: 9;
+  background-image: linear-gradient(-30deg, #ccc, #555, #ccc, #555, #ccc);
+  width: 700px;
+  top: 50%;
+  left: 50%;
+  margin-top: -20%;
+  margin-left: -350px;
+  max-height: 80%;
+  overflow: auto;
+}
+
+#char-goal {
+  width: 230px;
+  padding: 6px 6px;
+  margin: 0;
+  text-align: center;
+}
+
+#char-goal-div {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  max-height: 100px;
+}
+
+#char-goal-1, #char-goal-2 {
+  max-width: 100px;
+  padding: 6px 6px;
+  text-align: center;
+  flex: 1;
+  margin-top: 0;
+}
+
+#char-goal-and {
+  margin: 0 10px;
+  margin-top: 5px;
+  font-size: 1em;
+  text-align: center;
+}
+
+.theme-editor select {
+  width: 210px;
+  margin: 0;
+  padding: 6px 30px;
+}
+
+#custom-char-theme-description {
+  width: 500px;
+}
+
+#char-theme-setting-description {
+  margin: 0;
+}
+
+.custom-char-theme-btn {
+  background-color: #000;
+  border: none;
+  color: white;
+  padding: 6px 35px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  font-family: "Exo 2", "Verdana";
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.custom-char-theme-btn:hover {
+  background-color: #333;
+}
+
+/* STAGE THEME EDITOR MENU */
+
+#stage-goal {
+  width: 230px;
+  padding: 6px 6px;
+  margin: 0;
+  text-align: center;
+}
+
+#stage-goal-div {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  max-height: 100px;
+  max-width: 300px;
+}
+
+#stage-goal-1, #stage-goal-2 {
+  max-width: 45%;
+  padding: 6px 6px;
+  margin: 0;
+  text-align: center;
+  flex: 1;
+}
+
+#stage-goal-and {
+  margin: 0 10px;
+  margin-top: 5px;
+  font-size: 1em;
+  text-align: center;
+}
+
+#custom-stage-theme-description {
+  width: 500px;
+}
+
+#stage-theme-setting-description {
+  margin: 0;
+}
+
+/* RESULTS */
+
+.results {
+  padding: 15px 0;
+  color: #fff;
+  margin: 0;
+  font-family: "Exo 2", "Verdana";
+  font-size: 1.5em;
+  text-align: center;
+  font-weight: 1000;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  background-color: #222;
+  background-image: url("smash-ultimate-mural.jpg");
+  background-size: auto;
+  background-position: center left;
+  background-repeat: repeat-y;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation-name: scrollbg;
+  animation-duration: 120s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  flex-grow: 1;
+}
+
+@keyframes scrollbg {
+  50% {background-position-x: right;}
+}
+
+.result-line {
+  margin: 10px 0;
+}
+
+/* CHEAT CODE BUTTON */
+#code-btn {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  width: 100px;
+  padding: 10px 5px;
+  color: black;
+  background-color: black;
+  border: none;
+  border-radius: 5px;
+  font-family: "Exo 2", "Verdana";
+}
+
+#code-btn:hover {
+  cursor: pointer;
+  background-color: #111;
+}
+
+#code-popup {
+  font-family: "Exo 2", "Verdana";
+  font-size: 1.5em;
+  text-align: center;
+  margin-top: -10vh;
+}
+
+#enter-code {
+  background-color: white;
+  width: 300px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1.2em;
+  font-family: "Exo 2", "Verdana";
+  padding: 6px 5px;
+  margin: 0;
+}
+
+#preview-link {
+  display: none;
+}
+
+/* FOOTER */
+
+footer {
+  background-color: #000;
+  text-align: center;
+  padding: 10px 0;
+  margin: 0;
+  font-family: "Exo 2", "Verdana";
+  color: #000;
+  font-size: 1.5em;
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+}
+
+/* MEDIA QUERIES */
 @media screen and (max-width: 800px) {
   .open-button {
     position: relative;
@@ -396,19 +770,66 @@ footer {
     right: 0;
   }
 
+  .open-button-custom {
+    position: relative;
+    text-align: center;
+    margin: 10px 0;
+    bottom: 0;
+    left: 0;
+  }
+
   .form-popup {
     border: 3px solid #333;
     padding: 10px;
     padding-top: 5px;
-    z-index: 9;
-    background-image: linear-gradient(-30deg, #ccc, #555, #ccc, #555, #ccc);
-    width: 93%;
+    width: 93vw;
     margin-top: -270px;
     margin-left: -50%;
   }
 
+  .custom-stage-div {
+    margin-left: 45px;
+  }
+
+  .custom-stage-div input {
+    max-width: 220px;
+  }
+
+  .theme-editor {
+    border: 3px solid #333;
+    padding: 10px;
+    padding-top: 5px;
+    width: 93vw;
+    margin-top: -270px;
+    margin-left: -50%;
+  }
+
+  #custom-char-theme-description {
+    width: 300px;
+  }
+
+  #custom-stage-theme-description {
+    width: 300px;
+  }
+
+  #char-goal-1, #char-goal-2 {
+    max-width: 100px;
+  }
+
+  .delete {
+    position: relative;
+    bottom: 0;
+    right: 0;
+    margin: 10px 0;
+  }
+
   .column {
     width: 100%;
+  }
+
+  #code-btn {
+    display: none;
+  }
 }
 
 
