@@ -62,5 +62,5 @@ Add some spice to your Super Smash Bros. Ultimate Matches with this randomizer! 
 -Edited the theme logic to make it more efficient  
 -Edited the removed characters and stages logic to make it more efficient  
 -Added a cookie to the site that saves your settings and custom creations  
--Added a button that allows you to enter cheat codes
+-Added a button that allows you to enter cheat codes  
 -Added functionality for codes: "SECRET", "SANS", "GASTER", "69", and "UR2SLOW"
