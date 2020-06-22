@@ -17,7 +17,8 @@ Add some spice to your Super Smash Bros. Ultimate Matches with this randomizer! 
 -Custom stages  
 -Custom character filter creator  
 -Custom stage filter creator  
--Hidden cheat code screen
+-Hidden cheat code screen  
+-Cookies save settings and custom creations when you leave the site
 
 ### Version History:
 
