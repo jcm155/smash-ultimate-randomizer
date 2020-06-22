@@ -9,9 +9,14 @@ Add some spice to your Super Smash Bros. Ultimate Matches with this randomizer! 
 -Option to select how many stage options are generated  
 -Customizable max number of players  
 -Option to make results appear multi-colored  
--Option to include Battlefield and Omega forms  
+-Option to include Battlefield and Omega forms
+-Option to include custom stages  
 -Customizable 'ban list' for characters or stages which ensures that they won't be selected  
--Adjustable tournament legality for stricter or less strict rulesets
+-Adjustable tournament legality for stricter or less strict rulesets  
+-Custom Mii fighters  
+-Custom stages  
+-Custom character filter creator  
+-Custom stage filter creator
 
 ### Version History:
 
@@ -42,3 +47,18 @@ Add some spice to your Super Smash Bros. Ultimate Matches with this randomizer! 
 
 #### Version 1.3.2 (6/4/2020):
 -Fixed rare glitch with removed stages and BF and Omega forms which caused the site to crash
+
+#### Version 2.0.0
+-Added Min Min as a selectable character  
+-Added Spring Stadium as a selectable stage  
+-Added a "Custom..." menu  
+-Added an option to customize Mii Fighters  
+-Added an option to add Custom Stages to the stage rotation  
+-Added an option to exclude custom stages if you want  
+-Added a Theme Editor which allows you to create your own character or stage filters  
+-Changed the "Random..." option so that it will automatically select the randomly generated option  
+-Edited the theme logic to make it more efficient  
+-Edited the removed characters and stages logic to make it more efficient  
+-Added a cookie to the site that saves your settings and custom creations  
+-Added a button that allows you to enter cheat codes
+-Added functionality for codes: "SECRET", "SANS", "GASTER", "69", and "UR2SLOW"
