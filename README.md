@@ -9,14 +9,15 @@ Add some spice to your Super Smash Bros. Ultimate Matches with this randomizer! 
 -Option to select how many stage options are generated  
 -Customizable max number of players  
 -Option to make results appear multi-colored  
--Option to include Battlefield and Omega forms
+-Option to include Battlefield and Omega forms  
 -Option to include custom stages  
 -Customizable 'ban list' for characters or stages which ensures that they won't be selected  
 -Adjustable tournament legality for stricter or less strict rulesets  
 -Custom Mii fighters  
 -Custom stages  
 -Custom character filter creator  
--Custom stage filter creator
+-Custom stage filter creator  
+-Hidden cheat code screen
 
 ### Version History:
 
