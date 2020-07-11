@@ -1501,14 +1501,18 @@ function updateCheatCode()
 	else {
 		document.getElementById("results").style.animationDuration = "120s";
 	}
-	if (cheatCode.toLowerCase() == "sans")
+	if (cheatCode.toLowerCase() == "classic")
+	{
+		document.getElementById("results").style.backgroundImage = "url(smash-classic-mural.jpg)";
+	}
+	else if (cheatCode.toLowerCase() == "sans")
 	{
 		document.getElementById("results").style.backgroundImage = "url(sans.gif)";
 		document.getElementById("results").style.animation = "none";
 		document.getElementById("results").style.backgroundRepeat = "repeat";
 	}
 	else {
-		document.getElementById("results").style.backgroundImage = "url(smash-ultimate-mural.jpg)";
+		document.getElementById("results").style.backgroundImage = "url(smash-ultimate-mural.png)";
 		document.getElementById("results").style.animationName = "scrollbg";
 		document.getElementById("results").style.animationIterationCount = "infinite";
 		document.getElementById("results").style.animationTimingFunction = "linear";
@@ -2084,7 +2088,7 @@ characters.push(new Character("Hero", 72, "Dragon Quest", "male", 2017, "Ultimat
 characters.push(new Character("Banjo & Kazooie", 73, "Banjo-Kazooie", "both", 1998, "Ultimate", 106, 2.18, true, false, false, true, true, true));
 characters.push(new Character("Terry", 74, "Fatal Fury", "male", 1991, "Ultimate", 108, 1.72, true, false, false, true, false, false));
 characters.push(new Character("Byleth", 75, "Fire Emblem", "both", 2019, "Ultimate", 97, 1.43, true, true, false, false, true, false));
-characters.push(new Character("Min Min", 76, "ARMS", "female", 2017, "Ultimate", 82, 1.76, true, false, false, false, false, false));
+characters.push(new Character("Min Min", 76, "ARMS", "female", 2017, "Ultimate", 104, 1.57, true, false, false, false, false, false));
 
 for (var i = 0; i < characters.length; i++)
 {

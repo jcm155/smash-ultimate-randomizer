@@ -684,8 +684,8 @@ legend {
   font-weight: 1000;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   background-color: #222;
-  background-image: url("smash-ultimate-mural.jpg");
-  background-size: auto;
+  background-image: url("smash-ultimate-mural.png");
+  background-size: 200% auto;
   background-position: center left;
   background-repeat: repeat-y;
   display: flex;
