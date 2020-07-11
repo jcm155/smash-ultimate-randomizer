@@ -50,7 +50,7 @@ Add some spice to your Super Smash Bros. Ultimate Matches with this randomizer! 
 #### Version 1.3.2 (6/4/2020):
 -Fixed rare glitch with removed stages and BF and Omega forms which caused the site to crash
 
-#### Version 2.0.0
+#### Version 2.0.0 (6/22/2020):
 -Added Min Min as a selectable character  
 -Added Spring Stadium as a selectable stage  
 -Added a "Custom..." menu  
@@ -64,3 +64,7 @@ Add some spice to your Super Smash Bros. Ultimate Matches with this randomizer! 
 -Added a cookie to the site that saves your settings and custom creations  
 -Added a button that allows you to enter cheat codes  
 -Added functionality for codes: "SECRET", "SANS", "GASTER", "69", and "UR2SLOW"
+
+#### Version 2.0.1 (7/11/2020):
+-Added Min Min to the banner artwork  
+-Added functionality for code: "CLASSIC"
