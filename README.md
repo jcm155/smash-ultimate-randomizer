@@ -67,4 +67,5 @@ Add some spice to your Super Smash Bros. Ultimate Matches with this randomizer! 
 
 #### Version 2.0.1 (7/11/2020):
 -Added Min Min to the banner artwork  
--Added functionality for code: "CLASSIC"
+-Added functionality for code: "CLASSIC"  
+-Updated Min Min's weight and speed to be their actual values
