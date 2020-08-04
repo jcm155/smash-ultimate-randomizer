@@ -689,7 +689,7 @@ function readCookie()
 		document.getElementById("legality-control").value = getCookie("legalityLevel");
 		updateLegality();
 	}
-	if (hasTouchScreen)
+	if (testForTouchScreen())
 	{
 		try
 		{
