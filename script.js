@@ -698,7 +698,7 @@ function readCookie()
 			customCharThemes = JSON.parse(getCookie("customCharThemes"));
 			customStageThemes = JSON.parse(getCookie("customStageThemes"));
 		}
-		except
+		catch
 		{
 			miis = ""
 			customStages = "";
