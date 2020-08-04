@@ -689,7 +689,30 @@ function readCookie()
 		document.getElementById("legality-control").value = getCookie("legalityLevel");
 		updateLegality();
 	}
-	miis = JSON.parse(getCookie("miis"));
+	if (hasTouchScreen)
+	{
+		try
+		{
+			miis = JSON.parse(getCookie("miis"));
+			customStages = JSON.parse(getCookie("customStages"));
+			customCharThemes = JSON.parse(getCookie("customCharThemes"));
+			customStageThemes = JSON.parse(getCookie("customStageThemes"));
+		}
+		except
+		{
+			miis = ""
+			customStages = "";
+			customCharThemes = "";
+			customStageThemes = "";
+		}
+	}
+	else
+	{
+		miis = JSON.parse(getCookie("miis"));
+		customStages = JSON.parse(getCookie("customStages"));
+		customCharThemes = JSON.parse(getCookie("customCharThemes"));
+		customStageThemes = JSON.parse(getCookie("customStageThemes"));
+	}
 	if (miis == "")
 	{
 		miis = [];
@@ -697,32 +720,17 @@ function readCookie()
 		miis.push(new Mii("Mii Swordfighter", 1, "male", false));
 		miis.push(new Mii("Mii Gunner", 2, "female", false));
 	}
-	customStages = JSON.parse(getCookie("customStages"));
 	if (customStages == "")
 	{
 		customStages = [];
 	}
-	customCharThemes = JSON.parse(getCookie("customCharThemes"));
 	if (customCharThemes == "")
 	{
 		customCharThemes = [];
 	}
-	customStageThemes = JSON.parse(getCookie("customStageThemes"));
 	if (customStageThemes == "")
 	{
 		customStageThemes = [];
-	}
-	if (miis[selectedMii].class == 0)
- 	{
-	 	
-	}
-	else if (miis[selectedMii].class == 1)
-	{
-		
-	}
-	else
-	{
-		
 	}
 	for (var i = 0; i < miis.length; i++)
 	{
@@ -1036,7 +1044,7 @@ function setCookie(cname, cvalue, exdays) {
   var d = new Date();
   d.setTime(d.getTime() + (exdays*24*60*60*1000));
   var expires = "expires="+ d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;domain=current-domain";
 }
 
 //Constructor that holds stage data
@@ -1504,12 +1512,17 @@ function updateCheatCode()
 	if (cheatCode.toLowerCase() == "classic")
 	{
 		document.getElementById("results").style.backgroundImage = "url(smash-classic-mural.jpg)";
+		document.getElementById("results").style.backgroundSize = "auto 400px";
+		document.getElementById("results").style.animationName = "scrollbg";
+		document.getElementById("results").style.animationIterationCount = "infinite";
+		document.getElementById("results").style.animationTimingFunction = "linear";
 	}
 	else if (cheatCode.toLowerCase() == "sans")
 	{
 		document.getElementById("results").style.backgroundImage = "url(sans.gif)";
 		document.getElementById("results").style.animation = "none";
 		document.getElementById("results").style.backgroundRepeat = "repeat";
+		document.getElementById("results").style.backgroundSize = "auto";
 	}
 	else {
 		document.getElementById("results").style.backgroundImage = "url(smash-ultimate-mural.png)";
@@ -1517,6 +1530,7 @@ function updateCheatCode()
 		document.getElementById("results").style.animationIterationCount = "infinite";
 		document.getElementById("results").style.animationTimingFunction = "linear";
 		document.getElementById("results").style.backgroundRepeat = "repeat-y";
+		document.getElementById("results").style.backgroundSize = "auto 400px";
 	}
 	if (cheatCode.toLowerCase() == "69")
 	{
@@ -1942,7 +1956,6 @@ var resultLists = [];
 var cheatCode = "";
 
 //Colors for if the color-coded option is checked
-//var playerColors = ["#d50000", "#2e6dee", "#daa50c", "#09972b", "#d0571e", "#1ba4d1", "#d62f7f", "#5130a7"];
 var playerColors = ["#ff1100", "#2e6dee", "#ffdd00", "#00cc00", "#ff7700", "#00ffff", "#ff00ff", "#9f00ff"];
 
 //Handle the events
