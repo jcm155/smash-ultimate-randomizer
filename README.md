@@ -70,3 +70,7 @@ Add some spice to your Super Smash Bros. Ultimate Matches with this randomizer! 
 -Added functionality for code: "CLASSIC"  
 -Updated Min Min's weight and speed to be their actual values  
 -Changed color coding to be more user-friendly
+
+#### Version 2.2.0 (8/4/2020):
+-Added Small Battlefield as a selectable stage  
+-Various other minor changes to how cookies are handled
