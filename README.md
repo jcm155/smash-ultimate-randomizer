@@ -74,3 +74,9 @@ Add some spice to your Super Smash Bros. Ultimate Matches with this randomizer! 
 #### Version 2.2.0 (8/4/2020):
 -Added Small Battlefield as a selectable stage  
 -Various other minor changes to how cookies are handled
+
+#### Version 2.3.0 (10/15/2020):
+-Added Steve as a selectable character  
+-Added Minceraft World as a selectable stage  
+-Added Steve to the banner artwork  
+-Changed scroll speed of banner so that it is the same speed regardless of screen size
