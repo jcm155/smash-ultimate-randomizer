@@ -77,6 +77,11 @@ Add some spice to your Super Smash Bros. Ultimate Matches with this randomizer! 
 
 #### Version 2.3.0 (10/15/2020):
 -Added Steve as a selectable character  
--Added Minceraft World as a selectable stage  
+-Added Minecraft World as a selectable stage  
 -Added Steve to the banner artwork  
 -Changed scroll speed of banner so that it is the same speed regardless of screen size
+
+#### Version 2.4.0 (12/18/2020):
+-Added Sephiroth as a selectable character  
+-Added Northern Cave as a selectable stage  
+-Added Sephiroth to the banner artwork
