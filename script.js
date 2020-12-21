@@ -2272,8 +2272,8 @@ stages.push(new Stage("Spiral Mountain", stages.length, "Banjo-Kazooie", "Ultima
 stages.push(new Stage("King of Fighters Stadium", stages.length, "Fatal Fury", "Ultimate", 5, true, false, true));
 stages.push(new Stage("Garreg Mach Monastery", stages.length, "Fire Emblem", "Ultimate", 5, true, false, false));
 stages.push(new Stage("Spring Stadium", stages.length, "ARMS", "Ultimate", 4, true, false, false));
-stages.push(new Stage("Minecraft World", stages.length, "Minecraft", "Ultimate", 5, true, false, true));
-stages.push(new Stage("Northern Cave", stages.length, "Final Fantasy", "Ultimate", 3, true, false, true)); // #112 in Ultimate!!!
+stages.push(new Stage("Minecraft World", stages.length, "Minecraft", "Ultimate", 3, true, false, true));
+stages.push(new Stage("Northern Cave", stages.length, "Final Fantasy", "Ultimate", 0, true, false, true)); // #112 in Ultimate!!!
 //stages.push(new Stage("[Challenger Pack 9]", stages.length, "", "Ultimate", 5, true, false, true));
 //stages.push(new Stage("[Challenger Pack 10]", stages.length, "", "Ultimate", 5, true, false, true));
 //stages.push(new Stage("[Challenger Pack 11]", stages.length, "", "Ultimate", 5, true, false, true));
