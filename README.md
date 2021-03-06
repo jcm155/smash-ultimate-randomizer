@@ -85,3 +85,8 @@ Add some spice to your Super Smash Bros. Ultimate Matches with this randomizer! 
 -Added Sephiroth as a selectable character  
 -Added Northern Cave as a selectable stage  
 -Added Sephiroth to the banner artwork
+
+#### Version 2.5.0 (3/5/2021):
+-Added Pyra/Mythra as a selectable character  
+-Added Cloud Sea of Alrest as a selectable stage  
+-Added Pyra/Mythra to the banner artwork
