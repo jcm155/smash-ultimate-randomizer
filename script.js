@@ -2110,9 +2110,9 @@ characters.push(new Character("Byleth", 75, "Fire Emblem", "both", 2019, "Ultima
 characters.push(new Character("Min Min", 76, "ARMS", "female", 2017, "Ultimate", 104, 1.57, true, false, false, false, false, false));
 characters.push(new Character("Steve", 77, "Minecraft", "both", 2009, "Ultimate", 92, 1.46, true, true, true, true, true, true));
 characters.push(new Character("Sephiroth", 78, "Final Fantasy", "male", 1997, "Ultimate", 79, 1.86, true, true, true, true, false, false));
-//characters.push(new Character("[Challenger Pack 9]", 79, "", "male", 0000, "Ultimate", 104, 1.37, true, false, false, false, false, false));
-//characters.push(new Character("[Challenger Pack 10]", 80, "", "male", 0000, "Ultimate", 104, 1.37, true, false, false, false, false, false));
-//characters.push(new Character("[Challenger Pack 11]", 81, "", "male", 0000, "Ultimate", 104, 1.37, true, false, false, false, false, false));
+characters.push(new Character("Pyra/Mythra", 79, "Xenoblade Chronicles", "female", 2017, "Ultimate", 98, 2.41, true, true, false, false, true, false));
+//characters.push(new Character("[Challenger Pack 10]", 81, "", "male", 0000, "Ultimate", 104, 1.37, true, false, false, false, false, false));
+//characters.push(new Character("[Challenger Pack 11]", 82, "", "male", 0000, "Ultimate", 104, 1.37, true, false, false, false, false, false));
 
 
 for (var i = 0; i < characters.length; i++)
@@ -2237,7 +2237,7 @@ stages.push(new Stage("Mario Circuit", stages.length, "Super Mario Bros.", "Wii 
 //stages.push(new Stage("Jungle Hijinks", stages.length, "Donkey Kong", "Wii U", 5, false, false, false)); //NOT REAL
 stages.push(new Stage("Skyloft", stages.length, "Legend of Zelda", "Wii U", 3, false, true, false));
 //stages.push(new Stage("Pyrosphere", stages.length, "Metroid", "Wii U", 4, false, false, false)); //NOT REAL
-//stages.push(new Stage("Wooly World", stages.length, "Yoshi's Island", "Wii U", 5, false, true, false)); //NOT REAL
+//stages.push(new Stage("Woolly World", stages.length, "Yoshi's Island", "Wii U", 5, false, true, false)); //NOT REAL
 stages.push(new Stage("The Great Cave Offensive", stages.length, "Kirby", "Wii U", 5, false, true, false));
 //stages.push(new Stage("Orbital Gate Assault", stages.length, "Star Fox", "Wii U", 5, false, true, false)); //NOT REAL
 stages.push(new Stage("Kalos Pokemon League", stages.length, "Pokemon", "Wii U", 1, false, false, false));
@@ -2273,8 +2273,8 @@ stages.push(new Stage("King of Fighters Stadium", stages.length, "Fatal Fury", "
 stages.push(new Stage("Garreg Mach Monastery", stages.length, "Fire Emblem", "Ultimate", 5, true, false, false));
 stages.push(new Stage("Spring Stadium", stages.length, "ARMS", "Ultimate", 4, true, false, false));
 stages.push(new Stage("Minecraft World", stages.length, "Minecraft", "Ultimate", 3, true, false, true));
-stages.push(new Stage("Northern Cave", stages.length, "Final Fantasy", "Ultimate", 0, true, false, true)); // #112 in Ultimate!!!
-//stages.push(new Stage("[Challenger Pack 9]", stages.length, "", "Ultimate", 5, true, false, true));
+stages.push(new Stage("Northern Cave", stages.length, "Final Fantasy", "Ultimate", 0, true, false, true));
+stages.push(new Stage("Cloud Sea of Alrest", stages.length, "Xenoblade Chronicles", "Ultimate", 5, true, false, false)); // #113 in Ultimate!!!
 //stages.push(new Stage("[Challenger Pack 10]", stages.length, "", "Ultimate", 5, true, false, true));
 //stages.push(new Stage("[Challenger Pack 11]", stages.length, "", "Ultimate", 5, true, false, true));
 
