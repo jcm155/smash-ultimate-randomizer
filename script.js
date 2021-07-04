@@ -1527,7 +1527,7 @@ function updateCheatCode()
 		document.getElementById("results").style.backgroundSize = "auto";
 	}
 	else {
-		document.getElementById("results").style.backgroundImage = "url(smash-ultimate-mural.jpg)";
+		document.getElementById("results").style.backgroundImage = "url(smash-ultimate-mural.png)";
 		document.getElementById("results").style.animationName = "scrollbg";
 		document.getElementById("results").style.animationIterationCount = "infinite";
 		document.getElementById("results").style.animationTimingFunction = "linear";
@@ -2107,11 +2107,11 @@ characters.push(new Character("Hero", 72, "Dragon Quest", "male", 2017, "Ultimat
 characters.push(new Character("Banjo & Kazooie", 73, "Banjo-Kazooie", "both", 1998, "Ultimate", 106, 2.18, true, false, false, true, true, true));
 characters.push(new Character("Terry", 74, "Fatal Fury", "male", 1991, "Ultimate", 108, 1.72, true, false, false, true, false, false));
 characters.push(new Character("Byleth", 75, "Fire Emblem", "both", 2019, "Ultimate", 97, 1.43, true, true, false, false, true, false));
-characters.push(new Character("Min Min", 76, "ARMS", "female", 2017, "Ultimate", 104, 1.57, true, false, false, false, false, false));
+characters.push(new Character("Min Min", 76, "ARMS", "female", 2017, "Ultimate", 104, 1.55, true, false, false, false, false, false));
 characters.push(new Character("Steve", 77, "Minecraft", "both", 2009, "Ultimate", 92, 1.46, true, true, true, true, true, true));
 characters.push(new Character("Sephiroth", 78, "Final Fantasy", "male", 1997, "Ultimate", 79, 1.86, true, true, true, true, false, false));
 characters.push(new Character("Pyra/Mythra", 79, "Xenoblade Chronicles", "female", 2017, "Ultimate", 98, 2.41, true, true, false, false, true, false));
-//characters.push(new Character("[Challenger Pack 10]", 81, "", "male", 0000, "Ultimate", 104, 1.37, true, false, false, false, false, false));
+characters.push(new Character("Kazuya", 81, "Tekken", "male", 1994, "Ultimate", 104, 1.55, true, false, true, true, false, false));
 //characters.push(new Character("[Challenger Pack 11]", 82, "", "male", 0000, "Ultimate", 104, 1.37, true, false, false, false, false, false));
 
 
@@ -2274,8 +2274,8 @@ stages.push(new Stage("Garreg Mach Monastery", stages.length, "Fire Emblem", "Ul
 stages.push(new Stage("Spring Stadium", stages.length, "ARMS", "Ultimate", 4, true, false, false));
 stages.push(new Stage("Minecraft World", stages.length, "Minecraft", "Ultimate", 3, true, false, true));
 stages.push(new Stage("Northern Cave", stages.length, "Final Fantasy", "Ultimate", 0, true, false, true));
-stages.push(new Stage("Cloud Sea of Alrest", stages.length, "Xenoblade Chronicles", "Ultimate", 5, true, false, false)); // #113 in Ultimate!!!
-//stages.push(new Stage("[Challenger Pack 10]", stages.length, "", "Ultimate", 5, true, false, true));
+stages.push(new Stage("Cloud Sea of Alrest", stages.length, "Xenoblade Chronicles", "Ultimate", 5, true, false, false));
+stages.push(new Stage("Mishima Dojo", stages.length, "Tekken", "Ultimate", 5, true, false, true)); // #114 in Ultimate!!!
 //stages.push(new Stage("[Challenger Pack 11]", stages.length, "", "Ultimate", 5, true, false, true));
 
 for (var i = 0; i < stages.length; i++)
