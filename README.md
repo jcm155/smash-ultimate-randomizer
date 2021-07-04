@@ -90,3 +90,9 @@ Add some spice to your Super Smash Bros. Ultimate Matches with this randomizer! 
 -Added Pyra/Mythra as a selectable character  
 -Added Cloud Sea of Alrest as a selectable stage  
 -Added Pyra/Mythra to the banner artwork
+
+
+#### Version 2.6.0 (7/4/2021):
+-Added Kazuya as a selectable character  
+-Added Mishima Dojo as a selectable stage  
+-Added Kazuya to the banner artwork
