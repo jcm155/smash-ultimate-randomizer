@@ -1518,6 +1518,16 @@ function updateCheatCode()
 		document.getElementById("results").style.animationName = "scrollbg";
 		document.getElementById("results").style.animationIterationCount = "infinite";
 		document.getElementById("results").style.animationTimingFunction = "linear";
+		document.getElementById("results").style.animationDuration = 120000/window.innerWidth+"s";
+	}
+	else if (cheatCode.toLowerCase() == "roster")
+	{
+		document.getElementById("results").style.backgroundImage = "url(ultimate-roster.png)";
+		document.getElementById("results").style.backgroundSize = "auto 300px";
+		document.getElementById("results").style.animationName = "scrollbg";
+		document.getElementById("results").style.animationIterationCount = "infinite";
+		document.getElementById("results").style.animationTimingFunction = "linear";
+		document.getElementById("results").style.animationDuration = 200000/window.innerWidth+"s";
 	}
 	else if (cheatCode.toLowerCase() == "sans")
 	{
@@ -1533,6 +1543,7 @@ function updateCheatCode()
 		document.getElementById("results").style.animationTimingFunction = "linear";
 		document.getElementById("results").style.backgroundRepeat = "repeat-y";
 		document.getElementById("results").style.backgroundSize = "auto 400px";
+		document.getElementById("results").style.animationDuration = 40000/window.innerWidth+"s";
 	}
 	if (cheatCode.toLowerCase() == "69")
 	{
@@ -2111,8 +2122,8 @@ characters.push(new Character("Min Min", 76, "ARMS", "female", 2017, "Ultimate",
 characters.push(new Character("Steve", 77, "Minecraft", "both", 2009, "Ultimate", 92, 1.46, true, true, true, true, true, true));
 characters.push(new Character("Sephiroth", 78, "Final Fantasy", "male", 1997, "Ultimate", 79, 1.86, true, true, true, true, false, false));
 characters.push(new Character("Pyra/Mythra", 79, "Xenoblade Chronicles", "female", 2017, "Ultimate", 98, 2.41, true, true, false, false, true, false));
-characters.push(new Character("Kazuya", 81, "Tekken", "male", 1994, "Ultimate", 104, 1.55, true, false, true, true, false, false));
-//characters.push(new Character("[Challenger Pack 11]", 82, "", "male", 0000, "Ultimate", 104, 1.37, true, false, false, false, false, false));
+characters.push(new Character("Kazuya", 81, "Tekken", "male", 1994, "Ultimate", 113, 1.55, true, false, true, true, false, false));
+characters.push(new Character("Sora", 82, "Kingdom Hearts", "male", 2002, "Ultimate", 85, 1.58, true, true, false, true, false, false));
 
 
 for (var i = 0; i < characters.length; i++)
@@ -2143,7 +2154,7 @@ for (var i = 0; i < allCharSeries.length; i++)
 }
 
 stages = []
-//Assemble the stage data                                              dlc    large  3rd party
+//Assemble the stage data                                              					dlc    large  3rd party
 stages.push(new Stage("Battlefield", stages.length, "Super Smash Bros.", "Ultimate", 0, false, false, false));
 stages.push(new Stage("Small Battlefield", stages.length, "Super Smash Bros.", "Ultimate", 0, false, false, false));
 stages.push(new Stage("Big Battlefield", stages.length, "Super Smash Bros.", "Ultimate", 5, false, true, false));
@@ -2275,8 +2286,8 @@ stages.push(new Stage("Spring Stadium", stages.length, "ARMS", "Ultimate", 4, tr
 stages.push(new Stage("Minecraft World", stages.length, "Minecraft", "Ultimate", 3, true, false, true));
 stages.push(new Stage("Northern Cave", stages.length, "Final Fantasy", "Ultimate", 0, true, false, true));
 stages.push(new Stage("Cloud Sea of Alrest", stages.length, "Xenoblade Chronicles", "Ultimate", 5, true, false, false));
-stages.push(new Stage("Mishima Dojo", stages.length, "Tekken", "Ultimate", 5, true, false, true)); // #114 in Ultimate!!!
-//stages.push(new Stage("[Challenger Pack 11]", stages.length, "", "Ultimate", 5, true, false, true));
+stages.push(new Stage("Mishima Dojo", stages.length, "Tekken", "Ultimate", 5, true, false, true));
+stages.push(new Stage("Hollow Bastion", stages.length, "Kingdom Hearts", "Ultimate", 0, true, false, true)); // #115 in Ultimate!!!
 
 for (var i = 0; i < stages.length; i++)
 {
