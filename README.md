@@ -96,3 +96,10 @@ Add some spice to your Super Smash Bros. Ultimate Matches with this randomizer! 
 -Added Kazuya as a selectable character  
 -Added Mishima Dojo as a selectable stage  
 -Added Kazuya to the banner artwork
+
+#### Version 2.7.0 (10/18/2021):
+-Added Sora as a selectable character  
+-Added Hollow Bastion as a selectable stage  
+-Added Sora to the banner artwork  
+-Fixed scroll speeds for some displays
+-Added functionality for code ROSTER
