@@ -101,5 +101,5 @@ Add some spice to your Super Smash Bros. Ultimate Matches with this randomizer! 
 -Added Sora as a selectable character  
 -Added Hollow Bastion as a selectable stage  
 -Added Sora to the banner artwork  
--Fixed scroll speeds for some displays
+-Fixed scroll speeds for some displays  
 -Added functionality for code ROSTER
